@@ -1,0 +1,48 @@
+---
+title: "Test Post"
+description: "Test the blog"
+author: "Mike Gallimore"
+date: "1/19/2023"
+draft: true # Remove this line to publish
+freeze: false # Use this to freeze code outputs and dependencies. 
+jupyter: python3
+
+
+
+
+---
+
+## Test Markdown - notebook title here
+
+Simple demo to show jupyter notebook in a blog post. 
+
+Import an audio processing library:
+
+```{python}
+import librosa
+```
+
+Look at the contents of current directory
+```{python}
+!ls
+```
+
+
+Load a wav file, store the samples and the sample rate
+```{python}
+sig, sr = librosa.load('519189__inspectorj__request-42-hmm-i-don-t-know.wav')
+```
+
+
+Select the first 100 samples
+```{python}
+clip = sig[:100]
+```
+
+
+Print the array of samples. 
+```{python}
+print(clip)
+```
+
+

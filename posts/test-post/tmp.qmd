@@ -1,0 +1,10 @@
+---
+title: "Test Post"
+description: "Test the blog"
+author: "Mike Gallimore"
+date: "1/19/2023"
+draft: true # Remove this line to publish
+freeze: false # Use this to freeze code outputs and dependencies. 
+
+---
+this is a draft test post.
