@@ -13,7 +13,8 @@ website:
         href: https://twitter.com
 format:
   html:
-    theme: cosmo
+    theme: solar
+    # themes: https://bootswatch.com/
     css: styles.css
 
 
