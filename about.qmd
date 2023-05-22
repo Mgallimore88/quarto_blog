@@ -13,7 +13,7 @@ about:
 
 ---
 
-Hello! I'm a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains 
+Hi! I'm a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains 
 
 A graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.
 
