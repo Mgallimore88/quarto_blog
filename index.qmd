@@ -1,5 +1,5 @@
 ---
-title: "quarto_blog"
+title: "Mike's Machine Learning Blog"
 listing:
   contents: posts
   sort: "date desc"

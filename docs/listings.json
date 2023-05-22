@@ -2,7 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/test-post/index.html",
+      "/posts/librosa/index.html",
+      "/posts/boat-recogniser/boats-example.html",
+      "/posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html",
+      "/posts/probability-distributions/Probability.html",
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
     ]

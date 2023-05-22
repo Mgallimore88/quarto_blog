@@ -16,4 +16,10 @@ about:
 
 ---
 
-About this blog
+Hello! I'm a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains 
+
+A graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.
+
+I am proficient in Python. I studied Machine Learning through the FastAI course and textbooks. I've gained a solid practical understanding of how to build and train ML models including convolutional neural networks, random forests, segmentation models, and collaborative filtering models. 
+
+Currently I'm working on a project to identify animal species in audio recordings. 

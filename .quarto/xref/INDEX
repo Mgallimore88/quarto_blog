@@ -16,5 +16,35 @@
   },
   "posts/test-post/tmp.qmd": {
     "tmp.html": "ce75f3e8"
+  },
+  "posts/test-post copy/tmp.qmd": {
+    "tmp.html": "a6e79b3b"
+  },
+  "posts/test-post copy/index.qmd": {
+    "index.html": "f6da1600"
+  },
+  "posts/test-post copy/Probability.ipynb": {
+    "Probability.html": "9824a0e8"
+  },
+  "posts/test-pynbfile/Probability.ipynb": {
+    "Probability.html": "b507eb4e"
+  },
+  "posts/noteboook-inline/tmp.qmd": {
+    "tmp.html": "0b885119"
+  },
+  "posts/noteboook-inline/index.qmd": {
+    "index.html": "2e90524d"
+  },
+  "posts/librosa/index.qmd": {
+    "index.html": "bbf23f3d"
+  },
+  "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.ipynb": {
+    "linear-nonlinear-neuralnet.html": "eb1570a0"
+  },
+  "posts/probability-distributions/Probability.ipynb": {
+    "Probability.html": "df466045"
+  },
+  "posts/boat-recogniser/boats-example.ipynb": {
+    "boats-example.html": "f75d3bba"
   }
 }

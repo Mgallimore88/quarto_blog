@@ -3,14 +3,16 @@ project:
   output-dir: docs
 
 website:
-  title: "quarto_blog"
+  title: "MG ML"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/mgallimore88
+      - icon: envelope
+        href: mailto:mgallimore88@gmail.com
+      - icon: linkedin
+        href: https://www.linkedin.com/in/michael-gallimore-4104536a/
 format:
   html:
     theme: solar
