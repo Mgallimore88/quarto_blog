@@ -165,7 +165,7 @@
     "href": "posts/BCE-model/BCEmodel.html",
     "title": "MG ML",
     "section": "",
-    "text": "In this notebook we use the fastai library to build and train a convolutional neural network in PyTorch to recognize images of canoes, kayaks and sailboats.\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder"
+    "text": "In this notebook we use the fastai library to build and train a convolutional neural network in PyTorch to recognize images of canoes, kayaks and sailboats.\n\n<img src='../../images/BCE-model/leaves.jpg' width=\"500\">\n\nSyntaxError: invalid syntax (2422099302.py, line 1)\n\n\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder"
   },
   {
     "objectID": "posts/BCE-model/BCEmodel.html#choose-a-set-of-categories-for-the-classification-model",
