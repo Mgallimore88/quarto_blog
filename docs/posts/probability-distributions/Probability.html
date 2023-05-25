@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto_blog – probability</title>
+<title>MG ML – probability</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,10 +98,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">quarto_blog</span>
+    <span class="navbar-title">MG ML</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -179,6 +179,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="exploring-probability-distributions" class="level1">
 <h1>Exploring probability distributions</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dice.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">dice</figcaption><p></p>
+</figure>
+</div>
 <p>What happens when we add two sets of data with rectangular probability distributions?</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -209,6 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="we-can-see-here-that-the-two-rectangular-probability-distributions-combine-into-a-new-set-of-data-with-a-triangular-distribution." class="level1">
 <h1>We can see here that the two rectangular probability distributions combine into a new set of data with a triangular distribution.</h1>
 <p>This can be understood by considering rolls of two siz-sided dice. If you’ve played catan or other two dice games, you’ll know that the probability of rolling a 7 is higher than any other number. 2 and 12 are the least likely numbers. This is because there are multiple ways to roll a 7 (1&amp;6, 2&amp;5, 3&amp;4), and only one way to roll a 2 (1&amp;1) or a 12 (6&amp;6)</p>
+<p>Starting with the sum of the lowest number on each dice, the number of combinations of dice rolls which make the next possible sum increases. The probability of rolling the next possible number increases with a linear relationship as the number of ways of rolling this number increases. This holds true up to the middle sum, then decreases linearly.</p>
 <p>Both the dice on their own have a rectangular probability distribution, but together their probability distribution is triangular.</p>
 </section>
 <section id="adding-a-third-rectangular-set-of-data" class="level1">
@@ -224,10 +231,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="now-we-see-a-bell-curve." class="level2">
 <h2 class="anchored" data-anchor-id="now-we-see-a-bell-curve.">Now we see a bell curve.</h2>
+<p>The shape of this curve can be understood by looking at a table of the odds of each roll combination of three six-sided dice:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dice_3d6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">“dice3d6”</figcaption><p></p>
+</figure>
+</div>
 </section>
 </section>
-<section id="adding-a-fourth-rectangular-distribution-doesnt-seem-to-change-the-shape-but-it-does-increase-the-spread-of-the-bell-curve." class="level1">
-<h1>Adding a fourth rectangular distribution doesn’t seem to change the shape, but it does increase the spread of the bell curve.</h1>
+<section id="adding-a-fourth-rectangular-distribution-changes-the-shape-and-the-spread-of-the-bell-curve." class="level1">
+<h1>Adding a fourth rectangular distribution changes the shape and the spread of the bell curve.</h1>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_4 <span class="op">=</span> np.random.rand(n_samples)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_4 <span class="op">=</span> data_4 <span class="op">+</span> data_3</span>
@@ -238,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="normalizing-the-data" class="level1">
-<h1>Normalizing the data</h1>
+<section id="normalizing-the-data-lets-us-see-the-way-the-spread-of-probabilities-changes-as-we-add-more-rectangular-distributions-together." class="level1">
+<h1>Normalizing the data lets us see the way the spread of probabilities changes as we add more rectangular distributions together.</h1>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(data):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data <span class="op">/</span> data.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -4,168 +4,7 @@
     "href": "index.html",
     "title": "Mike’s Machine Learning Blog",
     "section": "",
-    "text": "Building a boat recognizer using the fast.ai library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 16, 2023\n\n\nMichael Gallimore\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post with code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in my ML blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "posts/test-post/index.html",
-    "href": "posts/test-post/index.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "Simple demo to show jupyter notebook in a blog post.\nImport an audio processing library:\n\nimport librosa\n\nLook at the contents of current directory\n\n!ls\n\n519189__inspectorj__request-42-hmm-i-don-t-know.wav\nindex.ipynb\nindex.qmd\ntmp.qmd\n\n\nLoad a wav file, store the samples and the sample rate\n\nsig, sr = librosa.load('519189__inspectorj__request-42-hmm-i-don-t-know.wav')\n\nSelect the first 100 samples\n\nclip = sig[:100]\n\nPrint the array of samples.\n\nprint(clip)\n\n[-7.04943162e-08 -6.82045780e-08 -5.11559826e-08 -7.86729402e-08\n -5.12133909e-08 -4.63321079e-08 -5.68936329e-08 -5.67301228e-08\n -7.72420279e-08 -7.70482487e-08 -6.68461198e-08 -9.10944280e-08\n -4.85252691e-08  1.15202745e-08 -5.35849018e-08 -4.22859436e-08\n -4.07363778e-08 -6.54961454e-08 -2.52615244e-08 -1.03300899e-07\n -9.52236832e-08 -5.57788162e-08 -8.47010782e-08 -3.24536664e-08\n -1.80859008e-08 -5.67124196e-08 -4.86764691e-08 -3.81183440e-08\n -1.34686564e-08 -5.35584590e-08 -4.63934420e-08 -1.40925926e-09\n -9.13558509e-08 -2.54916994e-08 -5.15710738e-11 -5.01320585e-08\n -3.53664404e-08 -5.09342044e-08 -4.31443965e-08 -6.15695654e-08\n -5.08044344e-08 -5.58168729e-08 -5.62084068e-08 -4.89922556e-08\n -7.52178622e-08 -6.05850943e-08 -7.97788005e-08 -2.82630346e-08\n -3.11292965e-08 -9.22111667e-08 -1.02208322e-08 -5.65269858e-08\n -8.34852472e-08 -9.56194341e-08 -8.53197903e-08 -2.03377581e-08\n -1.01371647e-07 -7.60369474e-08 -4.63584655e-08 -8.09312581e-08\n -3.79496079e-08 -1.97736227e-08 -5.25235713e-08 -7.31392547e-08\n -7.04075802e-08 -9.18863350e-08 -7.51423030e-08 -9.79777042e-08\n -4.88597749e-08 -2.85475128e-08 -9.14356733e-08 -6.82062478e-08\n -5.35127889e-08 -2.07979429e-08 -9.41929983e-08 -3.67487196e-08\n -3.34843335e-08 -6.35694164e-08 -4.65426133e-08 -1.03799309e-07\n -7.26424219e-08 -5.39867102e-08 -2.55796841e-08 -5.13993683e-08\n -6.98900777e-08 -4.91723142e-08 -4.00609110e-08 -7.11989045e-08\n -3.17368070e-08 -6.74259226e-08 -5.94582623e-08 -5.21991410e-08\n -8.69836612e-08 -4.21621493e-08 -4.78315663e-08 -6.55000036e-08\n -8.29355500e-08 -3.58391468e-08 -8.63811138e-08 -7.78119471e-08]"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Hi! I’m a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains.\nA graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.\nI am proficient in Python. I studied Machine Learning through the FastAI course and textbooks. I’ve gained a solid practical understanding of how to build and train ML models including convolutional neural networks, random forests, segmentation models, and collaborative filtering models.\nCurrently I’m working on a project to identify animal species in audio recordings."
-  },
-  {
-    "objectID": "posts/test-post copy/index.html",
-    "href": "posts/test-post copy/index.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "Simple demo to show jupyter notebook in a blog post.\nImport an audio processing library:\n\nimport librosa\n\nOMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\n\n\nLook at the contents of current directory\n\n!ls\n\n519189__inspectorj__request-42-hmm-i-don-t-know.wav\nProbability.ipynb\nindex.ipynb\nindex.qmd\ntmp.html\ntmp.qmd\n\n\nLoad a wav file, store the samples and the sample rate\n\nsig, sr = librosa.load('519189__inspectorj__request-42-hmm-i-don-t-know.wav')\n\nSelect the first 100 samples\n\nclip = sig[:100]\n\nPrint the array of samples.\n\nprint(clip)\n\n[-7.04943162e-08 -6.82045780e-08 -5.11559826e-08 -7.86729402e-08\n -5.12133909e-08 -4.63321079e-08 -5.68936329e-08 -5.67301228e-08\n -7.72420279e-08 -7.70482487e-08 -6.68461198e-08 -9.10944280e-08\n -4.85252691e-08  1.15202745e-08 -5.35849018e-08 -4.22859436e-08\n -4.07363778e-08 -6.54961454e-08 -2.52615244e-08 -1.03300899e-07\n -9.52236832e-08 -5.57788162e-08 -8.47010782e-08 -3.24536664e-08\n -1.80859008e-08 -5.67124196e-08 -4.86764691e-08 -3.81183440e-08\n -1.34686564e-08 -5.35584590e-08 -4.63934420e-08 -1.40925926e-09\n -9.13558509e-08 -2.54916994e-08 -5.15710738e-11 -5.01320585e-08\n -3.53664404e-08 -5.09342044e-08 -4.31443965e-08 -6.15695654e-08\n -5.08044344e-08 -5.58168729e-08 -5.62084068e-08 -4.89922556e-08\n -7.52178622e-08 -6.05850943e-08 -7.97788005e-08 -2.82630346e-08\n -3.11292965e-08 -9.22111667e-08 -1.02208322e-08 -5.65269858e-08\n -8.34852472e-08 -9.56194341e-08 -8.53197903e-08 -2.03377581e-08\n -1.01371647e-07 -7.60369474e-08 -4.63584655e-08 -8.09312581e-08\n -3.79496079e-08 -1.97736227e-08 -5.25235713e-08 -7.31392547e-08\n -7.04075802e-08 -9.18863350e-08 -7.51423030e-08 -9.79777042e-08\n -4.88597749e-08 -2.85475128e-08 -9.14356733e-08 -6.82062478e-08\n -5.35127889e-08 -2.07979429e-08 -9.41929983e-08 -3.67487196e-08\n -3.34843335e-08 -6.35694164e-08 -4.65426133e-08 -1.03799309e-07\n -7.26424219e-08 -5.39867102e-08 -2.55796841e-08 -5.13993683e-08\n -6.98900777e-08 -4.91723142e-08 -4.00609110e-08 -7.11989045e-08\n -3.17368070e-08 -6.74259226e-08 -5.94582623e-08 -5.21991410e-08\n -8.69836612e-08 -4.21621493e-08 -4.78315663e-08 -6.55000036e-08\n -8.29355500e-08 -3.58391468e-08 -8.63811138e-08 -7.78119471e-08]"
-  },
-  {
-    "objectID": "posts/test-post copy/Probability.html",
-    "href": "posts/test-post copy/Probability.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\n\n\n\n\nn_samples = 100000\nhist_bins = 200\n\n\ndata_1 = np.random.rand(n_samples)\nplt.hist(data_1, bins=hist_bins)\nplt.show()\n\n\n\n\n\ndata_2 = np.random.rand(n_samples)\ndata_2 = data_1 + data_2\nplt.hist(data_2, bins=hist_bins)\nplt.show()"
-  },
-  {
-    "objectID": "posts/test-post copy/Probability.html#now-we-see-a-bell-curve.",
-    "href": "posts/test-post copy/Probability.html#now-we-see-a-bell-curve.",
-    "title": "quarto_blog",
-    "section": "Now we see a bell curve.",
-    "text": "Now we see a bell curve."
-  },
-  {
-    "objectID": "posts/test-pynbfile/Probability.html",
-    "href": "posts/test-pynbfile/Probability.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\n\n\n\n\nn_samples = 100000\nhist_bins = 200\n\n\ndata_1 = np.random.rand(n_samples)\nplt.hist(data_1, bins=hist_bins)\nplt.show()\n\n\n\n\n\ndata_2 = np.random.rand(n_samples)\ndata_2 = data_1 + data_2\nplt.hist(data_2, bins=hist_bins)\nplt.show()"
-  },
-  {
-    "objectID": "posts/test-pynbfile/Probability.html#now-we-see-a-bell-curve.",
-    "href": "posts/test-pynbfile/Probability.html#now-we-see-a-bell-curve.",
-    "title": "quarto_blog",
-    "section": "Now we see a bell curve.",
-    "text": "Now we see a bell curve."
-  },
-  {
-    "objectID": "posts/noteboook-inline/index.html",
-    "href": "posts/noteboook-inline/index.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "Simple demo to show jupyter notebook in a blog post.\nImport an audio processing library:\n\nimport librosa\n\nOMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\n\n\nLook at the contents of current directory\n\n!ls\n\n519189__inspectorj__request-42-hmm-i-don-t-know.wav\nindex.ipynb\nindex.qmd\ntmp.html\ntmp.qmd\n\n\nLoad a wav file, store the samples and the sample rate\n\nsig, sr = librosa.load('519189__inspectorj__request-42-hmm-i-don-t-know.wav')\n\nSelect the first 100 samples\n\nclip = sig[:100]\n\nPrint the array of samples.\n\nprint(clip)\n\n[-7.04943162e-08 -6.82045780e-08 -5.11559826e-08 -7.86729402e-08\n -5.12133909e-08 -4.63321079e-08 -5.68936329e-08 -5.67301228e-08\n -7.72420279e-08 -7.70482487e-08 -6.68461198e-08 -9.10944280e-08\n -4.85252691e-08  1.15202745e-08 -5.35849018e-08 -4.22859436e-08\n -4.07363778e-08 -6.54961454e-08 -2.52615244e-08 -1.03300899e-07\n -9.52236832e-08 -5.57788162e-08 -8.47010782e-08 -3.24536664e-08\n -1.80859008e-08 -5.67124196e-08 -4.86764691e-08 -3.81183440e-08\n -1.34686564e-08 -5.35584590e-08 -4.63934420e-08 -1.40925926e-09\n -9.13558509e-08 -2.54916994e-08 -5.15710738e-11 -5.01320585e-08\n -3.53664404e-08 -5.09342044e-08 -4.31443965e-08 -6.15695654e-08\n -5.08044344e-08 -5.58168729e-08 -5.62084068e-08 -4.89922556e-08\n -7.52178622e-08 -6.05850943e-08 -7.97788005e-08 -2.82630346e-08\n -3.11292965e-08 -9.22111667e-08 -1.02208322e-08 -5.65269858e-08\n -8.34852472e-08 -9.56194341e-08 -8.53197903e-08 -2.03377581e-08\n -1.01371647e-07 -7.60369474e-08 -4.63584655e-08 -8.09312581e-08\n -3.79496079e-08 -1.97736227e-08 -5.25235713e-08 -7.31392547e-08\n -7.04075802e-08 -9.18863350e-08 -7.51423030e-08 -9.79777042e-08\n -4.88597749e-08 -2.85475128e-08 -9.14356733e-08 -6.82062478e-08\n -5.35127889e-08 -2.07979429e-08 -9.41929983e-08 -3.67487196e-08\n -3.34843335e-08 -6.35694164e-08 -4.65426133e-08 -1.03799309e-07\n -7.26424219e-08 -5.39867102e-08 -2.55796841e-08 -5.13993683e-08\n -6.98900777e-08 -4.91723142e-08 -4.00609110e-08 -7.11989045e-08\n -3.17368070e-08 -6.74259226e-08 -5.94582623e-08 -5.21991410e-08\n -8.69836612e-08 -4.21621493e-08 -4.78315663e-08 -6.55000036e-08\n -8.29355500e-08 -3.58391468e-08 -8.63811138e-08 -7.78119471e-08]"
-  },
-  {
-    "objectID": "posts/librosa/index.html",
-    "href": "posts/librosa/index.html",
-    "title": "MG ML",
-    "section": "",
-    "text": "Simple demo to show jupyter notebook in a blog post.\nImport an audio processing library:\n\nimport librosa\n\nOMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\n\n\nLook at the contents of current directory\n\n!ls\n\n519189__inspectorj__request-42-hmm-i-don-t-know.wav\nindex.ipynb\nindex.qmd\n\n\nLoad a wav file, store the samples and the sample rate\n\nsig, sr = librosa.load('519189__inspectorj__request-42-hmm-i-don-t-know.wav')\n\nSelect the first 100 samples\n\nclip = sig[:100]\n\nPrint the array of samples.\n\nprint(clip)\n\n[-7.04943162e-08 -6.82045780e-08 -5.11559826e-08 -7.86729402e-08\n -5.12133909e-08 -4.63321079e-08 -5.68936329e-08 -5.67301228e-08\n -7.72420279e-08 -7.70482487e-08 -6.68461198e-08 -9.10944280e-08\n -4.85252691e-08  1.15202745e-08 -5.35849018e-08 -4.22859436e-08\n -4.07363778e-08 -6.54961454e-08 -2.52615244e-08 -1.03300899e-07\n -9.52236832e-08 -5.57788162e-08 -8.47010782e-08 -3.24536664e-08\n -1.80859008e-08 -5.67124196e-08 -4.86764691e-08 -3.81183440e-08\n -1.34686564e-08 -5.35584590e-08 -4.63934420e-08 -1.40925926e-09\n -9.13558509e-08 -2.54916994e-08 -5.15710738e-11 -5.01320585e-08\n -3.53664404e-08 -5.09342044e-08 -4.31443965e-08 -6.15695654e-08\n -5.08044344e-08 -5.58168729e-08 -5.62084068e-08 -4.89922556e-08\n -7.52178622e-08 -6.05850943e-08 -7.97788005e-08 -2.82630346e-08\n -3.11292965e-08 -9.22111667e-08 -1.02208322e-08 -5.65269858e-08\n -8.34852472e-08 -9.56194341e-08 -8.53197903e-08 -2.03377581e-08\n -1.01371647e-07 -7.60369474e-08 -4.63584655e-08 -8.09312581e-08\n -3.79496079e-08 -1.97736227e-08 -5.25235713e-08 -7.31392547e-08\n -7.04075802e-08 -9.18863350e-08 -7.51423030e-08 -9.79777042e-08\n -4.88597749e-08 -2.85475128e-08 -9.14356733e-08 -6.82062478e-08\n -5.35127889e-08 -2.07979429e-08 -9.41929983e-08 -3.67487196e-08\n -3.34843335e-08 -6.35694164e-08 -4.65426133e-08 -1.03799309e-07\n -7.26424219e-08 -5.39867102e-08 -2.55796841e-08 -5.13993683e-08\n -6.98900777e-08 -4.91723142e-08 -4.00609110e-08 -7.11989045e-08\n -3.17368070e-08 -6.74259226e-08 -5.94582623e-08 -5.21991410e-08\n -8.69836612e-08 -4.21621493e-08 -4.78315663e-08 -6.55000036e-08\n -8.29355500e-08 -3.58391468e-08 -8.63811138e-08 -7.78119471e-08]"
-  },
-  {
-    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html",
-    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html",
-    "title": "MG ML",
-    "section": "",
-    "text": "Topics covered: - PyTorch - Feature Crosses - Linear and nonlinear models - universal approximation theorem - interpreting loss curves\nIn this example, I asked chat GPT to generate a PyTorch training loop for a linear model, from a synthetic dataset. The code produced was great. It gave me ideas and some framework code from which to develop my own understanding. Modifying and developing the code was a quick way to explore some new functions and explore some ideas in an interactive way.\nI wanted to get an intuitive understanding of the universal approximation theorem, in order to be able to better decide when to choose a neural network, and when to choose another type of model."
-  },
-  {
-    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model",
-    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model",
-    "title": "MG ML",
-    "section": "Define a nonlinear model",
-    "text": "Define a nonlinear model\nThis model will contain two linear layers connected by a ReLU activation function, enabling it to represent nonlinear functions.\n\nmodel = torch.nn.Sequential(\n    torch.nn.Linear(10,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,1)\n)\n\n\n# Define the optimizer\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)\n\n\noptimizer\n\nSGD (\nParameter Group 0\n    dampening: 0\n    differentiable: False\n    foreach: None\n    lr: 0.01\n    maximize: False\n    momentum: 0\n    nesterov: False\n    weight_decay: 0\n)\n\n\n\n# Define the data loader\nloader = DataLoader(train_dataset, batch_size=500, shuffle=True)\n\n\ntrain(100, loader, model, val_x, val_y)\n\n2.518, 1.761\n\n\n\n\n\nThe model converges towards a stable value, but it takes a long time and never reaches zero. This can be explained by the model not describing the mapping function perfectly - it is almost but not quite describing the equation\n\\(y=2X_0X_1 + 2X_0 -3X_1 - 3\\)\nSince we increased the number of layers in the model, interpreting what is going on by looking at the parameters has gone from being trivial to being very difficult. We are looking for coefficients which represent a straight multiplication of \\(2 * X_0\\), \\(-3 * X_1\\) and some way of representing \\(2*X_0*X_1\\)\n\nlist(model.parameters())\n\n[Parameter containing:\n tensor([[-6.0341e-01,  7.4068e-01,  1.1714e-01,  3.0487e-01,  1.1350e-01,\n           1.6252e-01, -3.8328e-01,  2.9286e-01, -1.7268e-01, -1.1349e-01],\n         [-9.7725e-01,  1.2587e+00, -9.1938e-02, -1.3213e-01,  2.7093e-02,\n          -1.1980e-01,  9.9834e-02, -2.4829e-01,  1.9772e-01, -8.2101e-03],\n         [-4.7922e-01,  5.4561e-01,  1.7990e-01, -1.3366e-01, -5.8698e-02,\n           2.0070e-01,  1.2817e-01,  2.6042e-02,  7.4049e-02,  1.5992e-02],\n         [-1.1129e-01, -3.4661e-01,  1.5593e-02, -3.3927e-02,  3.3553e-03,\n          -6.7739e-02,  1.9699e-01, -2.1908e-01, -1.9680e-01,  1.2308e-01],\n         [ 6.4029e-04,  1.1276e-01, -2.5297e-01,  2.1831e-01, -1.1878e-01,\n          -1.4201e-01,  3.0204e-01, -1.6409e-01, -1.6396e-01,  1.7286e-01],\n         [-3.0487e-01,  2.8155e-01,  9.8999e-02, -2.4160e-01, -2.4192e-01,\n          -1.1160e-01, -2.1963e-02,  7.1207e-03,  2.8266e-01,  1.1177e-01],\n         [-4.3329e-03,  2.6280e-01, -2.4909e-01, -1.4999e-01,  2.7082e-01,\n          -3.0941e-01, -4.8501e-02,  1.5773e-01, -2.4637e-01,  2.7581e-01],\n         [ 8.0356e-02, -5.0721e-01,  1.0275e-02, -1.4435e-01, -2.3078e-01,\n           1.5244e-01, -2.5871e-01,  2.0775e-01,  1.6999e-02,  1.4378e-01],\n         [-8.0510e-01,  9.3808e-01,  2.7476e-02,  4.1569e-02, -8.0434e-02,\n          -8.6201e-02, -5.4608e-02,  6.5882e-02, -3.5787e-01, -6.5858e-02],\n         [-1.0937e-01, -4.4521e-01,  8.5424e-02, -1.5546e-01, -6.3826e-02,\n           3.4240e-02, -2.7848e-01,  2.5718e-01, -1.5809e-01, -8.6447e-02]],\n        requires_grad=True),\n Parameter containing:\n tensor([ 0.0198,  0.4470,  0.2590,  0.2427,  0.2077,  0.0263, -0.1412,  0.2742,\n          0.1831,  0.1076], requires_grad=True),\n Parameter containing:\n tensor([[-0.9906, -1.6195, -0.7937,  0.3644, -0.0268, -0.4274, -0.0493,  0.2982,\n          -1.2422,  0.3623]], requires_grad=True),\n Parameter containing:\n tensor([-0.2686], requires_grad=True)]\n\n\nPerhaps we can work out the correct set of parameters for the model just by thinking about it…\nThe first node of the first layer needs to carry through the exact values of \\(X_0\\) and \\(X_1\\) so they can be used later.\nWe also need these \\(X_0\\) and \\(X_1\\) features to be multiplied by the weights 2 and -3 for the linear part of the problem.\nWe’d need an overall bias of -3, which is added to the output layer of the model.\nFinally need a point in the model where \\(X_0\\) and \\(X_1\\) are multiplied together. This never happens - unless we have a quadratic activation function. We’re providing nonlinearities using ReLUs (rectified linear units). A ReLU is like two linear functions (y=x and y=0) joined at a discontinuity at x=0.\n\nk = torch.linspace(-100, 100, 20000)\nrelu = torch.relu(k)\nplt.plot(k, relu)\nplt.title('Using a ReLU activation function after each node in a linear layer \\nis one way to add a nonlinearity to a neural network')\n\nplt.show()\n\n\n\n\n\ntrain(5000, loader, model, val_x, val_y)\n\n0.172, 0.177\n\n\n\n\n\nThis model is trained pretty well. Let’s make a plot of y vs model(x) and see what shape we get.\n\nplt.scatter(model(X).detach().numpy(), y, alpha=0.05)\n\n<matplotlib.collections.PathCollection at 0x1378a83a0>\n\n\n\n\n\nThere are outliers visible. After training for 5000 epochs, the model has found a way of approximating our nonlinear function using a combination of coefficients and nonlinear activation functions. It isn’t perfect though - since functions which build the model are all linear additions and multiplications by ReLU."
-  },
-  {
-    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#make-the-synthetic-dataset",
-    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#make-the-synthetic-dataset",
-    "title": "MG ML",
-    "section": "Make the synthetic dataset",
-    "text": "Make the synthetic dataset"
-  },
-  {
-    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model-1",
-    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model-1",
-    "title": "MG ML",
-    "section": "Define a nonlinear model",
-    "text": "Define a nonlinear model\nThis model will contain two linear layers connected by a ReLU activation function, enabling it to represent nonlinear functions.\n\nmodel = torch.nn.Sequential(\n    torch.nn.Linear(1,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,1),\n)\n\n\n# Define the optimizer\noptimizer = torch.optim.Adam(model.parameters())\n\n\n# Define the data loader\nloader = DataLoader(train_dataset, batch_size=10, shuffle=True)\n\n\ntrain(500, loader, model, val_x, val_y)\n\n0.000, 0.000\n\n\n\n\n\n\nplt.scatter(x,y)\nyhat = model(x).detach().numpy()\nplt.scatter(x, yhat)\n\n<matplotlib.collections.PathCollection at 0x297771ab0>\n\n\n\n\n\nI haven’t been able to get the model to train sufficiently for this problem. Here’s another blog post showing that it is possible, and that the resulting model doesn’t have any smooth segments on its curve:\nhttps://machinelearningmastery.com/neural-networks-are-function-approximators/"
-  },
-  {
-    "objectID": "posts/probability-distributions/Probability.html",
-    "href": "posts/probability-distributions/Probability.html",
-    "title": "quarto_blog",
-    "section": "",
-    "text": "What happens when we add two sets of data with rectangular probability distributions?\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nn_samples = 100000\nhist_bins = 200\n\n\ndata_1 = np.random.rand(n_samples)\nplt.hist(data_1, bins=hist_bins)\nplt.show()\n\n\n\n\n\ndata_2 = np.random.rand(n_samples)\ndata_2 = data_1 + data_2\nplt.hist(data_2, bins=hist_bins)\nplt.show()"
-  },
-  {
-    "objectID": "posts/probability-distributions/Probability.html#now-we-see-a-bell-curve.",
-    "href": "posts/probability-distributions/Probability.html#now-we-see-a-bell-curve.",
-    "title": "quarto_blog",
-    "section": "Now we see a bell curve.",
-    "text": "Now we see a bell curve."
-  },
-  {
-    "objectID": "posts/boat-recogniser/boats-example.html",
-    "href": "posts/boat-recogniser/boats-example.html",
-    "title": "MG ML",
-    "section": "",
-    "text": "This is part 2 of a presentation I gave for ML Squamish. The aim of the presentation was to get beginners from no-code to training their own image recognition model in a 2 hour workshop.\nAt this stage we’d just got everyone set up on a virtual machine using Paperspace Gradient, and people had their first notebook instances open.\n\n\n\n\n\ntype ? or ?? next to a function then shift + return to execute the cell to get the source code.\nPress shift + tab inside function’s parentheses to get function signature and docstring\nType the name of a module and hit enter to get info about its type and location."
-  },
-  {
-    "objectID": "posts/boat-recogniser/boats-example.html#change-your-code-to-reflect-the-categories-youre-using.",
-    "href": "posts/boat-recogniser/boats-example.html#change-your-code-to-reflect-the-categories-youre-using.",
-    "title": "MG ML",
-    "section": "Change your code to reflect the categories you’re using.",
-    "text": "Change your code to reflect the categories you’re using.\n\nboat_types = 'canoe', 'kayak', 'sailboat'\n\n\npath = Path('boats')\n\nDownload images from chosen categories.\nThis cell may take a few minutes to run\n\nif not path.exists():\n    path.mkdir()\n    for boat in boat_types:\n        dest = (path/boat)\n        dest.mkdir(exist_ok=True)\n        results = search_images(boat)\n        download_images(dest, urls=results)\n\n\n!ls {path}\npath\n\ncanoe  kayak  sailboat\n\n\nPath('boats')\n\n\n\nfilenames = get_image_files(path)\nfilenames\n\n(#554) [Path('boats/sailboat/3b873c96-0d1f-4404-9aae-af25d3805177.jpg'),Path('boats/sailboat/6336c57d-8ad9-4318-836c-fba58b5357be.jpg'),Path('boats/sailboat/d2a981d0-0d3e-4b0e-a077-a5cbda1a41b0.JPG'),Path('boats/sailboat/da7dc60e-7c83-4807-9fc1-a0f5061a5080.jpg'),Path('boats/sailboat/168643af-803b-4783-8c6b-a785157c481e.jpeg'),Path('boats/sailboat/f4055206-199c-42a8-bf74-8ed6c4dc7e08.jpg'),Path('boats/sailboat/d5883260-5325-41cb-a645-016051c37819.jpg'),Path('boats/sailboat/4b44e5d8-75e1-413b-a9b9-bd3f19b63df4.jpg'),Path('boats/sailboat/86d8f1b9-b75b-467f-8476-2d91805a150b.jpg'),Path('boats/sailboat/e07b4c1d-a717-4c10-9059-005016798081.jpeg')...]\n\n\n\nfailed = verify_images(filenames)\n\n\nfailed\n\n(#0) []\n\n\n\nfailed.map(Path.unlink)\n\n(#0) []\n\n\n\nfailed\n\n(#0) []"
-  },
-  {
-    "objectID": "posts/boat-recogniser/boats-example.html#create-a-way-to-load-datasets-and-dataloaders",
-    "href": "posts/boat-recogniser/boats-example.html#create-a-way-to-load-datasets-and-dataloaders",
-    "title": "MG ML",
-    "section": "Create a way to load datasets and dataloaders",
-    "text": "Create a way to load datasets and dataloaders\n\nboats = DataBlock(\n    blocks=(ImageBlock, CategoryBlock),\n    get_items=get_image_files,\n    splitter=RandomSplitter(valid_pct=0.2, seed=42),\n    get_y=parent_label,\n    item_tfms=Resize(128)\n)\n\n\ndataloaders = boats.dataloaders(path)\n\n\ndataloaders.device\n\ndevice(type='cuda', index=0)\n\n\nIf the device type is ‘cuda’ that means we’ve got the model on the GPU. If device type is ‘cpu’ then now’s a good time to see if there is a free GPU instance available. The data you downloaded earlier won’t be lost since Paperspace has persistent storage.\n\n# Docs for some modules. Uncomment as required. \n# DataLoader?\n# DataLoaders?\n# Datasets?\n# torch.utils.data.Dataset?\n# torch.utils.data.DataLoader?"
-  },
-  {
-    "objectID": "posts/boat-recogniser/boats-example.html#training-and-validation-sets",
-    "href": "posts/boat-recogniser/boats-example.html#training-and-validation-sets",
-    "title": "MG ML",
-    "section": "Training and validation sets",
-    "text": "Training and validation sets\nOur data is split into training and validation batches. 20% of the data is in the validation set, and 80% is in the training set.\nDataset: an iterable over tuples containing images with their corresponding category.  DataLoader: a PyTorch iterable returning a batch of datasets. DataLoaders: a fastai iterable which splits dataloaders into training and validation datasets.\n\ndataloaders.train.show_batch()"
-  },
-  {
-    "objectID": "posts/boat-recogniser/boats-example.html#train-a-model",
-    "href": "posts/boat-recogniser/boats-example.html#train-a-model",
-    "title": "MG ML",
-    "section": "Train a model",
-    "text": "Train a model\n\nlearn = vision_learner(dataloaders, resnet18, metrics=error_rate)\nlearn.fine_tune(4)\nlearn.recorder.plot_loss()\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      1.512921\n      0.358238\n      0.145455\n      00:13\n    \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      0.609499\n      0.233965\n      0.100000\n      00:13\n    \n    \n      1\n      0.459157\n      0.267047\n      0.118182\n      00:13\n    \n    \n      2\n      0.373013\n      0.286165\n      0.118182\n      00:13\n    \n    \n      3\n      0.338020\n      0.260390\n      0.109091\n      00:13"
-  },
-  {
-    "objectID": "posts/BCE-model/BCEmodel.html",
-    "href": "posts/BCE-model/BCEmodel.html",
-    "title": "MG ML",
-    "section": "",
-    "text": "In this notebook we use the fastai library to build and train a convolutional neural network in PyTorch to recognize images of canoes, kayaks and sailboats.\n\n<img src='../../images/BCE-model/leaves.jpg' width=\"500\">\n\nSyntaxError: invalid syntax (2422099302.py, line 1)\n\n\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder"
+    "text": "Building a boat recognizer using the fast.ai library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/BCE-model/BCEmodel.html#choose-a-set-of-categories-for-the-classification-model",
@@ -229,5 +68,68 @@
     "title": "MG ML",
     "section": "First we need to create a function to get the label",
     "text": "First we need to create a function to get the label\nWe already have this, in the form of parent_label(), which returns a string version of the parent folder containing the image. However, we’re also going to tell fastai that the labels are multi-category labels, even though they’re not. The multi-category block expects a list of strings as input - so if we just pass in a string then that will get split into a list of characters - not what we want.\nI’m doing this so that the labels are converted to one hot encoded vectors, which will allow us to use binary cross-entropy loss.\nSpecifying the target type as ‘MultiCategoryBlock’ in the fastai DataBlock will create a model which can handle multiple classes in a single image. Rather than strongly picking one class out of many, we’ll be choosing potentially many classes out of many. This has the beneficial side effect that we can threshold the output activations and create a ‘no class recognized’ output - an ability we don’t have when using cross-entropy loss across all the activations.\n\ndef get_y(r): return parent_label(r).split(' ')\n\n\ndef accuracy_multi(inp, targ, thresh=0.5, sigmoid=True):\n    \"Compute accuracy when `inp` and `targ` are the same size.\"\n    if sigmoid: inp = inp.sigmoid()\n    return ((inp>thresh)==targ.bool()).float().mean()\n\n\nboat_dls = DataBlock(\n    blocks=(ImageBlock, MultiCategoryBlock),\n    get_items=get_image_files,\n    splitter=RandomSplitter(valid_pct=0.2, seed=42),\n    get_y=get_y,\n    item_tfms=Resize(128),\n    batch_tfms=aug_transforms()\n).dataloaders(path)\n\n\nlr = learn.lr_find()\n\n\n\n\n\n\n\n\n\n\n\n\nlearn = vision_learner(boat_dls, resnet18, pretrained=True, metrics=accuracy_multi)\n%time learn.fine_tune(6, base_lr=lr[0])\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      accuracy_multi\n      time\n    \n  \n  \n    \n      0\n      1.020967\n      0.877902\n      0.563636\n      00:13\n    \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      accuracy_multi\n      time\n    \n  \n  \n    \n      0\n      0.947158\n      0.818463\n      0.545455\n      00:14\n    \n    \n      1\n      0.937178\n      0.750471\n      0.572727\n      00:13\n    \n    \n      2\n      0.897594\n      0.689925\n      0.627273\n      00:14\n    \n    \n      3\n      0.863008\n      0.640909\n      0.654545\n      00:14\n    \n    \n      4\n      0.827849\n      0.622816\n      0.663636\n      00:13\n    \n    \n      5\n      0.808169\n      0.619115\n      0.660606\n      00:14"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in my ML blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html",
+    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html",
+    "title": "MG ML",
+    "section": "",
+    "text": "Topics covered: - PyTorch - Feature Crosses - Linear and nonlinear models - universal approximation theorem - interpreting loss curves\nIn this example, I asked chat GPT to generate a PyTorch training loop for a linear model, from a synthetic dataset. The code produced was great. It gave me ideas and some framework code from which to develop my own understanding. Modifying and developing the code was a quick way to explore some new functions and explore some ideas in an interactive way.\nI wanted to get an intuitive understanding of the universal approximation theorem, in order to be able to better decide when to choose a neural network, and when to choose another type of model."
+  },
+  {
+    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model",
+    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model",
+    "title": "MG ML",
+    "section": "Define a nonlinear model",
+    "text": "Define a nonlinear model\nThis model will contain two linear layers connected by a ReLU activation function, enabling it to represent nonlinear functions.\n\nmodel = torch.nn.Sequential(\n    torch.nn.Linear(10,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,1)\n)\n\n\n# Define the optimizer\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)\n\n\noptimizer\n\nSGD (\nParameter Group 0\n    dampening: 0\n    differentiable: False\n    foreach: None\n    lr: 0.01\n    maximize: False\n    momentum: 0\n    nesterov: False\n    weight_decay: 0\n)\n\n\n\n# Define the data loader\nloader = DataLoader(train_dataset, batch_size=500, shuffle=True)\n\n\ntrain(100, loader, model, val_x, val_y)\n\n2.518, 1.761\n\n\n\n\n\nThe model converges towards a stable value, but it takes a long time and never reaches zero. This can be explained by the model not describing the mapping function perfectly - it is almost but not quite describing the equation\n\\(y=2X_0X_1 + 2X_0 -3X_1 - 3\\)\nSince we increased the number of layers in the model, interpreting what is going on by looking at the parameters has gone from being trivial to being very difficult. We are looking for coefficients which represent a straight multiplication of \\(2 * X_0\\), \\(-3 * X_1\\) and some way of representing \\(2*X_0*X_1\\)\n\nlist(model.parameters())\n\n[Parameter containing:\n tensor([[-6.0341e-01,  7.4068e-01,  1.1714e-01,  3.0487e-01,  1.1350e-01,\n           1.6252e-01, -3.8328e-01,  2.9286e-01, -1.7268e-01, -1.1349e-01],\n         [-9.7725e-01,  1.2587e+00, -9.1938e-02, -1.3213e-01,  2.7093e-02,\n          -1.1980e-01,  9.9834e-02, -2.4829e-01,  1.9772e-01, -8.2101e-03],\n         [-4.7922e-01,  5.4561e-01,  1.7990e-01, -1.3366e-01, -5.8698e-02,\n           2.0070e-01,  1.2817e-01,  2.6042e-02,  7.4049e-02,  1.5992e-02],\n         [-1.1129e-01, -3.4661e-01,  1.5593e-02, -3.3927e-02,  3.3553e-03,\n          -6.7739e-02,  1.9699e-01, -2.1908e-01, -1.9680e-01,  1.2308e-01],\n         [ 6.4029e-04,  1.1276e-01, -2.5297e-01,  2.1831e-01, -1.1878e-01,\n          -1.4201e-01,  3.0204e-01, -1.6409e-01, -1.6396e-01,  1.7286e-01],\n         [-3.0487e-01,  2.8155e-01,  9.8999e-02, -2.4160e-01, -2.4192e-01,\n          -1.1160e-01, -2.1963e-02,  7.1207e-03,  2.8266e-01,  1.1177e-01],\n         [-4.3329e-03,  2.6280e-01, -2.4909e-01, -1.4999e-01,  2.7082e-01,\n          -3.0941e-01, -4.8501e-02,  1.5773e-01, -2.4637e-01,  2.7581e-01],\n         [ 8.0356e-02, -5.0721e-01,  1.0275e-02, -1.4435e-01, -2.3078e-01,\n           1.5244e-01, -2.5871e-01,  2.0775e-01,  1.6999e-02,  1.4378e-01],\n         [-8.0510e-01,  9.3808e-01,  2.7476e-02,  4.1569e-02, -8.0434e-02,\n          -8.6201e-02, -5.4608e-02,  6.5882e-02, -3.5787e-01, -6.5858e-02],\n         [-1.0937e-01, -4.4521e-01,  8.5424e-02, -1.5546e-01, -6.3826e-02,\n           3.4240e-02, -2.7848e-01,  2.5718e-01, -1.5809e-01, -8.6447e-02]],\n        requires_grad=True),\n Parameter containing:\n tensor([ 0.0198,  0.4470,  0.2590,  0.2427,  0.2077,  0.0263, -0.1412,  0.2742,\n          0.1831,  0.1076], requires_grad=True),\n Parameter containing:\n tensor([[-0.9906, -1.6195, -0.7937,  0.3644, -0.0268, -0.4274, -0.0493,  0.2982,\n          -1.2422,  0.3623]], requires_grad=True),\n Parameter containing:\n tensor([-0.2686], requires_grad=True)]\n\n\nPerhaps we can work out the correct set of parameters for the model just by thinking about it…\nThe first node of the first layer needs to carry through the exact values of \\(X_0\\) and \\(X_1\\) so they can be used later.\nWe also need these \\(X_0\\) and \\(X_1\\) features to be multiplied by the weights 2 and -3 for the linear part of the problem.\nWe’d need an overall bias of -3, which is added to the output layer of the model.\nFinally need a point in the model where \\(X_0\\) and \\(X_1\\) are multiplied together. This never happens - unless we have a quadratic activation function. We’re providing nonlinearities using ReLUs (rectified linear units). A ReLU is like two linear functions (y=x and y=0) joined at a discontinuity at x=0.\n\nk = torch.linspace(-100, 100, 20000)\nrelu = torch.relu(k)\nplt.plot(k, relu)\nplt.title('Using a ReLU activation function after each node in a linear layer \\nis one way to add a nonlinearity to a neural network')\n\nplt.show()\n\n\n\n\n\ntrain(5000, loader, model, val_x, val_y)\n\n0.172, 0.177\n\n\n\n\n\nThis model is trained pretty well. Let’s make a plot of y vs model(x) and see what shape we get.\n\nplt.scatter(model(X).detach().numpy(), y, alpha=0.05)\n\n<matplotlib.collections.PathCollection at 0x1378a83a0>\n\n\n\n\n\nThere are outliers visible. After training for 5000 epochs, the model has found a way of approximating our nonlinear function using a combination of coefficients and nonlinear activation functions. It isn’t perfect though - since functions which build the model are all linear additions and multiplications by ReLU."
+  },
+  {
+    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#make-the-synthetic-dataset",
+    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#make-the-synthetic-dataset",
+    "title": "MG ML",
+    "section": "Make the synthetic dataset",
+    "text": "Make the synthetic dataset"
+  },
+  {
+    "objectID": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model-1",
+    "href": "posts/linear-nonlinear-neuralnet/linear-nonlinear-neuralnet.html#define-a-nonlinear-model-1",
+    "title": "MG ML",
+    "section": "Define a nonlinear model",
+    "text": "Define a nonlinear model\nThis model will contain two linear layers connected by a ReLU activation function, enabling it to represent nonlinear functions.\n\nmodel = torch.nn.Sequential(\n    torch.nn.Linear(1,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,10),\n    torch.nn.ReLU(),\n    torch.nn.Linear(10,1),\n)\n\n\n# Define the optimizer\noptimizer = torch.optim.Adam(model.parameters())\n\n\n# Define the data loader\nloader = DataLoader(train_dataset, batch_size=10, shuffle=True)\n\n\ntrain(500, loader, model, val_x, val_y)\n\n0.000, 0.000\n\n\n\n\n\n\nplt.scatter(x,y)\nyhat = model(x).detach().numpy()\nplt.scatter(x, yhat)\n\n<matplotlib.collections.PathCollection at 0x297771ab0>\n\n\n\n\n\nI haven’t been able to get the model to train sufficiently for this problem. Here’s another blog post showing that it is possible, and that the resulting model doesn’t have any smooth segments on its curve:\nhttps://machinelearningmastery.com/neural-networks-are-function-approximators/"
+  },
+  {
+    "objectID": "posts/probability-distributions/Probability.html",
+    "href": "posts/probability-distributions/Probability.html",
+    "title": "MG ML",
+    "section": "",
+    "text": "dice\n\n\nWhat happens when we add two sets of data with rectangular probability distributions?\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nn_samples = 100000\nhist_bins = 200\n\n\ndata_1 = np.random.rand(n_samples)\nplt.hist(data_1, bins=hist_bins)\nplt.show()\n\n\n\n\n\ndata_2 = np.random.rand(n_samples)\ndata_2 = data_1 + data_2\nplt.hist(data_2, bins=hist_bins)\nplt.show()"
+  },
+  {
+    "objectID": "posts/probability-distributions/Probability.html#now-we-see-a-bell-curve.",
+    "href": "posts/probability-distributions/Probability.html#now-we-see-a-bell-curve.",
+    "title": "MG ML",
+    "section": "Now we see a bell curve.",
+    "text": "Now we see a bell curve.\nThe shape of this curve can be understood by looking at a table of the odds of each roll combination of three six-sided dice:\n\n\n\n“dice3d6”"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi! I’m a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains.\nA graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.\nI am proficient in Python. I studied Machine Learning through the FastAI course and textbooks. I’ve gained a solid practical understanding of how to build and train ML models including convolutional neural networks, random forests, segmentation models, and collaborative filtering models.\nCurrently I’m working on a project to identify animal species in audio recordings."
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html",
+    "href": "posts/BCE-model/BCEmodel.html",
+    "title": "MG ML",
+    "section": "",
+    "text": "leaves\n\n\nIn this notebook we build and train a convolutional neural network based classifier model in PyTorch recognize images of canoes, kayaks and sailboats. We use the fastai library to speed up the process and get us to a working model with less code.\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder\nLet’s get started!"
   }
 ]
