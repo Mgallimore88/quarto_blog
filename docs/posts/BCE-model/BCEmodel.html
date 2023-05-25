@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MG ML – bcemodel</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MG ML</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgallimore88"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mgallimore88@gmail.com"><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/michael-gallimore-4104536a/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="building-a-boat-recognizer-using-the-fast.ai-library" class="level1">
+<h1>Building a boat recognizer using the <a href="https://github.com/fastai/fastbook/blob/master/02_production.ipynb">fast.ai</a> library</h1>
+<p>In this notebook we use the fastai library to build and train a convolutional neural network in PyTorch to recognize images of canoes, kayaks and sailboats.</p>
+<p>This notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.</p>
+<p>We explore some different loss functions and training approaches.</p>
+<p>Topics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder</p>
+</section>
+<section id="install-required-libraries" class="level1">
+<h1>Install required libraries</h1>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>BCEmodel.ipynb  data/    insects/             models/
+README.md       https:/  model-example.ipynb  quick_start_pytorch.ipynb
+boats/          images/  model.pth            quick_start_pytorch_images/</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>Uqq fastai</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install duckduckgo_search</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting duckduckgo_search
+  Downloading duckduckgo_search-2.8.5-py3-none-any.whl (30 kB)
+Collecting requests&gt;=2.28.2
+  Downloading requests-2.28.2-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 12.6 MB/s eta 0:00:00
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.9/dist-packages (from duckduckgo_search) (8.1.3)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/lib/python3/dist-packages (from requests&gt;=2.28.2-&gt;duckduckgo_search) (2.8)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/lib/python3/dist-packages (from requests&gt;=2.28.2-&gt;duckduckgo_search) (2019.11.28)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=2.28.2-&gt;duckduckgo_search) (1.26.10)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.9/dist-packages (from requests&gt;=2.28.2-&gt;duckduckgo_search) (2.1.0)
+Installing collected packages: requests, duckduckgo_search
+  Attempting uninstall: requests
+    Found existing installation: requests 2.28.1
+    Uninstalling requests-2.28.1:
+      Successfully uninstalled requests-2.28.1
+Successfully installed duckduckgo_search-2.8.5 requests-2.28.2
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</code></pre>
+</div>
+</div>
+</section>
+<section id="imports" class="level1">
+<h1>Imports</h1>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.widgets <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastdownload <span class="im">import</span> download_url</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> duckduckgo_search <span class="im">import</span> ddg_images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_images(term, max_images <span class="op">=</span> <span class="dv">200</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L(ddg_images(term, max_results<span class="op">=</span>max_images)).itemgot(<span class="st">'image'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>search_images(<span class="st">'canoe'</span>)[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>'https://northernwilds.com/wp-content/uploads/2018/06/IMG_1530_opt.jpeg'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ims <span class="op">=</span> search_images(<span class="st">'canoe'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dest <span class="op">=</span> (<span class="st">'images/canoe.jpg'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>download_url(ims[<span class="dv">0</span>], dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      <progress value="2170880" class="" max="2163989" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      100.32% [2170880/2163989 00:00&lt;00:00]
+    </div>
+    
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>Path('images/canoe.jpg')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(dest)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>im.to_thumb(<span class="dv">128</span>, <span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<p><img src="BCEmodel_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="choose-a-set-of-categories-for-the-classification-model" class="level2">
+<h2 class="anchored" data-anchor-id="choose-a-set-of-categories-for-the-classification-model">Choose a set of categories for the classification model</h2>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>boat_types <span class="op">=</span> <span class="st">'canoe'</span>, <span class="st">'kayak'</span>, <span class="st">'sailboat'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> Path(<span class="st">'boats'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Download images from chosen categories.</p>
+<p>This cell may take a few minutes to run</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> path.exists():</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    path.mkdir()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> boat <span class="kw">in</span> boat_types:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        dest <span class="op">=</span> (path<span class="op">/</span>boat)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        dest.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        results <span class="op">=</span> search_images(boat)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        download_images(dest, urls<span class="op">=</span>results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls {path}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>canoe  kayak  sailboat</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Path('boats')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> get_image_files(path)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>(#554) [Path('boats/sailboat/3b873c96-0d1f-4404-9aae-af25d3805177.jpg'),Path('boats/sailboat/6336c57d-8ad9-4318-836c-fba58b5357be.jpg'),Path('boats/sailboat/d2a981d0-0d3e-4b0e-a077-a5cbda1a41b0.JPG'),Path('boats/sailboat/da7dc60e-7c83-4807-9fc1-a0f5061a5080.jpg'),Path('boats/sailboat/168643af-803b-4783-8c6b-a785157c481e.jpeg'),Path('boats/sailboat/f4055206-199c-42a8-bf74-8ed6c4dc7e08.jpg'),Path('boats/sailboat/d5883260-5325-41cb-a645-016051c37819.jpg'),Path('boats/sailboat/4b44e5d8-75e1-413b-a9b9-bd3f19b63df4.jpg'),Path('boats/sailboat/86d8f1b9-b75b-467f-8476-2d91805a150b.jpg'),Path('boats/sailboat/e07b4c1d-a717-4c10-9059-005016798081.jpeg')...]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="clean-out-any-corrupt-images-from-the-dataset" class="level1">
+<h1>Clean out any corrupt images from the dataset</h1>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>failed <span class="op">=</span> verify_images(filenames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>failed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(#0) []</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>failed.<span class="bu">map</span>(Path.unlink)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>(#0) []</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>failed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>(#0) []</code></pre>
+</div>
+</div>
+<section id="some-of-the-terminology-in-pytorch-fastai-can-be-confusing.-they-can-have-similar-names-which-mean-very-specific-things.-here-are-some-definintions" class="level2">
+<h2 class="anchored" data-anchor-id="some-of-the-terminology-in-pytorch-fastai-can-be-confusing.-they-can-have-similar-names-which-mean-very-specific-things.-here-are-some-definintions">Some of the terminology in PyTorch fastai can be confusing. They can have similar names which mean very specific things. Here are some definintions</h2>
+<p><strong>Dataset</strong>: an iterable over tuples containing images with their corresponding category. <br> <strong>Datasets</strong>: a fastai class which joins together a training dataset and a validation dataset into one object.<br> <strong>DataLoader</strong>: a PyTorch iterable returning a batch of datasets.<br> <strong>DataLoaders</strong>: a fastai iterable which splits dataloaders into training and validation datasets. <br> <strong>batch</strong>: The sample of the dataset loaded in parallel and passed to the model during one training loop.</p>
+</section>
+<section id="use-the-fastai-datablock-to-create-a-way-to-load-datasets-and-dataloaders" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-fastai-datablock-to-create-a-way-to-load-datasets-and-dataloaders">Use the fastai DataBlock to create a way to load datasets and dataloaders</h2>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>boats <span class="op">=</span> DataBlock(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, CategoryBlock),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>, seed<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span>parent_label,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    item_tfms<span class="op">=</span>Resize(<span class="dv">128</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dataloaders <span class="op">=</span> boats.dataloaders(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The dataloaders object provides a way of loading batches of data from a location. It contains specific details on how the data should be transformed, how big a validation set to make, and a bunch of helper functions such as show.batch() which allow quick visualization and troubleshooting.</p>
+</section>
+<section id="training-and-validation-sets" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-validation-sets">Training and validation sets</h2>
+<p>Our data is split into training and validation sets. 20% of the data is in the validation set, and 80% is in the training set.</p>
+<p>Here we can see a sample of one batch from the training set. The input feature is an image of a boat, and the target label is the class of the boat. There are three classes: canoe, sailboat and kayak. We can see using the show_batch function that the images and labels are all loaded and re-sized correctly.</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dataloaders.train.show_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="item-transformations-to-reduce-over-fitting." class="level1">
+<h1>Item transformations to reduce over-fitting.</h1>
+<p>We only downloaded 200 images for each type of boat. We’ll have to iterate over each image more than once in order for the model to see enough examples of each boat to bne able to train. It would be beneficial to have more images, or the model might just learn the specific form of each image in the dataset, and become over-confident and not be able to generalize to other images outside of the training set. This process is known as over-fitting.</p>
+<p>We can transform the images in the training set each time they are loaded, reducing the risk of over-fitting.</p>
+<p>Item transformations are one way we can reduce the amount of data required to train a machine learning model.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>boats <span class="op">=</span> boats.new(RandomResizedCrop(<span class="dv">224</span>, min_scale<span class="op">=</span><span class="fl">0.5</span>), </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                  batch_tfms<span class="op">=</span>aug_transforms())</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>dataloaders <span class="op">=</span> boats.dataloaders(path)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>dataloaders.train.show_batch(max_n<span class="op">=</span><span class="dv">8</span>, nrows<span class="op">=</span><span class="dv">2</span>, unique<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="train-a-model" class="level1">
+<h1>Train a model</h1>
+<section id="pre-trained-models." class="level2">
+<h2 class="anchored" data-anchor-id="pre-trained-models.">Pre-trained models.</h2>
+<p>Here we take a pre-trained image recognition model and fine tune it to learn the classes in our dataset. This resnet18 model was originally trained on the ImageNet dataset to recognize over 20,000 classes, with hundreds of examples in each class. We can take advantage of the large amount of work which went into training this model.</p>
+<p>Under the hood fastai replaces the output layers of the pre-trained model with randomly initialized layers with the same number of output nodes as the number of classes we’re trying to predict (three: ‘canoe’, ‘kakak’, ‘sailboat’). When we re-train the model, most of the work goes into training these final layers of the network, until the model learns to represent the categories we’re looking for. This works even when the category we’re looking for wasn’t seen by the pre-trained model’s original dataset.</p>
+<p>The earlier layers of a neural network tend to learn things like gradients, edges, colour, and the semantic meaning increases in deeper layers until the final layer represents the concept level output: canoe, kayak, sailboat. These earlier layers are useful for picking out features in a broad set of images - not just the ones the model was trained on.</p>
+</section>
+<section id="metrics" class="level2">
+<h2 class="anchored" data-anchor-id="metrics">Metrics</h2>
+<p>Metrics are a human readable representation of the performance of our model. Error rate is a pretty simple and easy to understand metric: what portion of the examples from the validation set did we mis-classify.</p>
+</section>
+<section id="loss" class="level2">
+<h2 class="anchored" data-anchor-id="loss">Loss</h2>
+<p>Loss can be thought of as a sort of punishment function. The training process seeks to minimize loss, and the gradient of the loss function is used to calculate a better set of parameters during model training. The loss function can be thought of as a kind of error measure, but it is designed to be read by a machine, not a human, and to have smooth gradients. Lower loss usually means a better model. When plotting loss per epoch, decreasing loss curves are a good sign which mean the model is improving. If the loss curves are noisy or increasing, it is an indicator that we might have picked too high a learning rate, or that the model is beginnign to over-fit.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dataloaders, resnet18, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">4</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /root/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6768928e9e9e4544a51e6aca9a2bb89e","version_major":2,"version_minor":0}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.571849</td>
+      <td>0.666472</td>
+      <td>0.163636</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.534734</td>
+      <td>0.270972</td>
+      <td>0.118182</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.436475</td>
+      <td>0.234348</td>
+      <td>0.081818</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.353536</td>
+      <td>0.214399</td>
+      <td>0.063636</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.313201</td>
+      <td>0.206994</td>
+      <td>0.063636</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-24-output-7.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="confusion-matrix" class="level1">
+<h1>Confusion matrix</h1>
+<p>This confusion matrix shows us which categories we’re getting most mixed up. It looks as though the canoe and the kayak class are most commonly confused, but the sailboats are less commonly mistaken.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>interpreter <span class="op">=</span> ClassificationInterpretation.from_learner(learn)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>interpreter.plot_confusion_matrix()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-25-output-5.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>interpreter.plot_top_losses(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-26-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="data-cleaning" class="level1">
+<h1>Data cleaning</h1>
+<p>We can create a view of the images which had the highest loss values after training. A high loss would occur for an image which is very confidently wrongly identified, or one which is correctly identified but given a low probability.</p>
+<p>Sometimes the data we’re training contains unusual examples. In the above images, there’s an image of a wooden paddle, which is labelled canoe. This was labeled correctly, but the model was un-confident about the prediction, and so it shows up in our list of top losses. We can remove this image from the training set to create a more consistent set of training data, and hopefully a more accurate boat recognizer.</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>cleaner <span class="op">=</span> ImageClassifierCleaner(learn)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>cleaner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"7cfcce2267c74407b7c7e4558b9c84de","version_major":2,"version_minor":0}
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete bad images</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx <span class="kw">in</span> cleaner.delete(): </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    cleaner.fns[idx].unlink()</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Recategorize mislabelled images</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cat <span class="kw">in</span> cleaner.change():</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    shutil.move(<span class="bu">str</span>(cleaner.fns[idx]), path<span class="op">/</span>cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="re-train-model-with-better-data" class="level1">
+<h1>Re train model with better data</h1>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>learn.lr_find()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>SuggestedLRs(valley=9.120108734350652e-05)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-29-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dataloaders, resnet18, metrics<span class="op">=</span>error_rate, lr<span class="op">=</span><span class="fl">1e-4</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time learn.fine_tune(<span class="dv">4</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.453485</td>
+      <td>0.536477</td>
+      <td>0.163636</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.523266</td>
+      <td>0.295558</td>
+      <td>0.100000</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.439696</td>
+      <td>0.288609</td>
+      <td>0.090909</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.405357</td>
+      <td>0.218177</td>
+      <td>0.063636</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.350951</td>
+      <td>0.202666</td>
+      <td>0.063636</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 10.2 s, sys: 8.59 s, total: 18.8 s
+Wall time: 1min 14s</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-30-output-6.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="still-improving---lets-train-some-more" class="level1">
+<h1>Still improving - let’s train some more</h1>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> learn.lr_find()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-31-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">4</span>, lr_max<span class="op">=</span>lr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.171525</td>
+      <td>0.204587</td>
+      <td>0.063636</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.143939</td>
+      <td>0.204017</td>
+      <td>0.054545</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.135632</td>
+      <td>0.191662</td>
+      <td>0.045455</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.125083</td>
+      <td>0.184999</td>
+      <td>0.045455</td>
+      <td>00:13</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-2" class="level1">
+<h1>Confusion matrix 2</h1>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>interpreter <span class="op">=</span> ClassificationInterpretation.from_learner(learn)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>interpreter.plot_confusion_matrix()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-34-output-5.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="try-using-progressive-resizing-to-speed-up-training." class="level1">
+<h1>Try using progressive resizing to speed up training.</h1>
+<p>We can create a custom dls which takes smaller images initially, then re-train on larger images. This speeds up training and improves performance in some cases, but it can reduce performance if the training images are similar to the ones the model was pre-trained on.</p>
+<div class="cell" data-tags="[]" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_dls(bs, size):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    dblock <span class="op">=</span> DataBlock(blocks<span class="op">=</span>(ImageBlock, CategoryBlock),</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>                   get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>                   get_y<span class="op">=</span>parent_label,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>                   splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>, seed<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                   item_tfms<span class="op">=</span>Resize(<span class="dv">256</span>),</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>                   batch_tfms<span class="op">=</span>[<span class="op">*</span>aug_transforms(size<span class="op">=</span>size, min_scale<span class="op">=</span><span class="fl">0.75</span>),</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>                              Normalize.from_stats(<span class="op">*</span>imagenet_stats)])</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dblock.dataloaders(path, bs<span class="op">=</span>bs)</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> get_dls(<span class="dv">64</span>, <span class="dv">64</span>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>learn_pr <span class="op">=</span> Learner(dls, resnet18(pretrained<span class="op">=</span><span class="va">True</span>), metrics<span class="op">=</span>error_rate)</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time learn_pr.fit_one_cycle(<span class="dv">4</span>, <span class="fl">3e-3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8.916942</td>
+      <td>23.666075</td>
+      <td>0.463636</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4.849486</td>
+      <td>160.868179</td>
+      <td>0.609091</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3.327196</td>
+      <td>12.700367</td>
+      <td>0.436364</td>
+      <td>00:15</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2.517933</td>
+      <td>1.864578</td>
+      <td>0.336364</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 3.08 s, sys: 5.22 s, total: 8.3 s
+Wall time: 59.8 s</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> get_dls(<span class="dv">64</span>, <span class="dv">256</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time learn_pr.fine_tune(<span class="dv">4</span>, <span class="fl">3e-3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.876890</td>
+      <td>13.187647</td>
+      <td>0.354545</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.778222</td>
+      <td>0.704825</td>
+      <td>0.309091</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.635141</td>
+      <td>4.023889</td>
+      <td>0.372727</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.539282</td>
+      <td>11.316115</td>
+      <td>0.445455</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.529068</td>
+      <td>2.485397</td>
+      <td>0.381818</td>
+      <td>00:15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 3.98 s, sys: 6.35 s, total: 10.3 s
+Wall time: 1min 16s</code></pre>
+</div>
+</div>
+</section>
+<section id="progressive-resizing-seems-to-reduce-the-models-performance" class="level1">
+<h1>Progressive resizing seems to reduce the model’s performance</h1>
+<p>This could be because the images used to pre-train the resnet model are already similar to the images in our training set. By first training on low resolution images, we’re altering the pretrained weights so that they are good at recognizing low resolution images, then when we pass the high res ones back in we’re training the model to recognise high res images again. The training of the model to recognize high res (224*224) images has already been done for the pretrained model.</p>
+<p>It could be worth trying this approach for problems which don’t use pretrained weights, or where the training data is different to the pretrained model’s data.</p>
+</section>
+<section id="using-the-model-to-predict-on-unseen-data." class="level1">
+<h1>Using the model to predict on unseen data.</h1>
+<p>Here I test the model on some unseen images.</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>canoe.jpg      testboat2.JPG  testboat5.JPG  testboat8.JPG
+leaves.jpg     testboat3.JPG  testboat6.JPG  testboat9.JPG
+testboat1.JPG  testboat4.JPG  testboat7.JPG</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/testboat1.JPG'</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/testboat1.JPG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted sailboat with a confidence of 0.9949540495872498</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<p><img src="BCEmodel_files/figure-html/cell-38-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="that-looks-pretty-good.-lets-try-some-more-images" class="level1">
+<h1>That looks pretty good. Let’s try some more images</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/testboat2.JPG'</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(probs)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/testboat2.JPG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted canoe with a confidence of 0.8784130215644836
+TensorBase([0.8784, 0.0732, 0.0484])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<p><img src="BCEmodel_files/figure-html/cell-39-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="great-again-we-got-a-sensible-preciction-of-88-probability-of-a-canoe." class="level2">
+<h2 class="anchored" data-anchor-id="great-again-we-got-a-sensible-preciction-of-88-probability-of-a-canoe.">Great, again we got a sensible preciction of 88% probability of a canoe.</h2>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/leaves.jpg'</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(probs)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/leaves.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted canoe with a confidence of 0.5352954268455505
+TensorBase([0.5353, 0.1248, 0.3399])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<p><img src="BCEmodel_files/figure-html/cell-40-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="this-result-doesnt-make-sense" class="level1">
+<h1>This result doesn’t make sense!</h1>
+<p>Why is this happening?</p>
+<p>Our model was trained using <strong>Cross Entropy loss</strong> as the loss function. Because the cross entropy loss function uses <strong>softmax</strong> as part of the calculation, it artificially drives output activations which are slightly higher than the others to be much closer to 1 in the output layer. This is great if we really want to identify one category out of all the optional categories, but it renders the model useless for predictions on images from a category which wasn’t present in the training data, or in cases where there are more than one category present in an image.</p>
+</section>
+<section id="softmax-function" class="level1">
+<h1>softmax function</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="BCEmodel_files/figure-html/24955712-1609-44ec-af90-45057e05221e-1-d5baed85-9327-417f-a348-80341eafffa8.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>The <strong>softmax</strong> function takes the exponent of each output activation in turn, and divides it by the sum of the exponents of all the output activations. In this way small differences between the larger activations get amplified more than the same differences between smaller activations.</p>
+<p>This mathematical trick is useful since it makes all the outputs activations sum to 1; a feature which is essential for cross-entropy loss to work.</p>
+<p>Example</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>activations <span class="op">=</span> torch.tensor([<span class="fl">0.1</span>, <span class="fl">0.11</span>, <span class="fl">0.34</span>, <span class="fl">0.35</span>])</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(activations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>tensor(0.9000)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>sm <span class="op">=</span> activations.softmax(<span class="dv">0</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>tensor([0.2190, 0.2212, 0.2785, 0.2813])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>sm[<span class="dv">0</span>] <span class="op">-</span> sm[<span class="dv">1</span>], sm[<span class="dv">2</span>] <span class="op">-</span> sm[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>(tensor(-0.0022), tensor(-0.0028))</code></pre>
+</div>
+</div>
+<p>The difference between 0.10 and 0.11 is the same as the difference between 0.34 and 0.35, but the softmax function amplifies this difference for larger activations.</p>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(activations.softmax(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>tensor(1.0000)</code></pre>
+</div>
+</div>
+<p>The outputs of the softmax function sum to 1, which is required for cross entropy loss to work.</p>
+</section>
+<section id="cross-entopy-loss-is-softmax-combined-with-log-likelihood." class="level1">
+<h1>Cross entopy loss is softmax combined with log likelihood.</h1>
+<p>Let’s prove this by taking the negative log of the softmax of our activations:</p>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>np.log(sm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>tensor([1.5185, 1.5085, 1.2785, 1.2685])</code></pre>
+</div>
+</div>
+<p>Now let’s create a vector of targets to specify that the target activation is the fourth activation in our example:</p>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> torch.tensor([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s compare the value calculated by pytorch’s nn.CrossEntropyLoss() function and the loss we calculated above. We’ll assume that the item at index 3 was the target.</p>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>nn.CrossEntropyLoss()(activations, targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>tensor(1.2685)</code></pre>
+</div>
+</div>
+<p><strong>negative log softmax of the activation at the target index is 1.2685. This is the same value we get when we take the cross entropy loss of the activations, which demonstrates their equivalence.</strong></p>
+</section>
+<section id="how-does-all-this-affect-the-training-process" class="level1">
+<h1>How does all this affect the training process?</h1>
+<p>When traing a model, the optimizer changes the parameters to minimize the loss. To make the loss approach zero, the model would have to drive the output activation at the target node increasingly higher, and drive the activations of the other nodes closer to zero. This results in efficient model training, but it also means that the model is never ‘good enough’. The targets which the activations are compared against are numerically 1.0 or zero, but the output of the softmax function can never reach these lower and upper bounds. Training for longer will drive the model’s output activations ever higher and higher in an effort to get closer to this mathematical impossibility.</p>
+<p>To illustrate this in one more way, in these examples, neither of the two sets of activations (1, 0) nor (10, 0 ) have a value equal to either 1 or 0 when passed through the softmax function.</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>output_activation_1 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>output_activation_2 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>torch.tensor([output_activation_1, output_activation_2]).softmax(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>tensor([0.7311, 0.2689])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>output_activation_1 <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>output_activation_2 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>torch.tensor([output_activation_1, output_activation_2]).softmax(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>tensor([9.9995e-01, 4.5398e-05])</code></pre>
+</div>
+</div>
+<p>There’s no amount of training which will cause the output of the softmax activations to equal zero or 1.</p>
+<p>The result of driving the activations within a network ever higher and higher can be networks which predict over confidently.</p>
+<p>This is partly why we see the model confidently predicting that the image of a sailboat is actually a centipede.</p>
+<p>It also makes it tricky to compare activations: all of the activations are on a different scale due to the amplification of higher values by the softmax function.</p>
+<p>How can we do things differently?</p>
+</section>
+<section id="binary-crossentropy-loss" class="level1">
+<h1>Binary crossentropy loss</h1>
+<p>If we wanted to be able to indicate uncertainty, and relative confidence between activations, we’d need to use a loss function which doesn’t magnify small differences between the highest activations. All the activations values need to lie on the same scale as one another so we can make a direct comparison between them. Then we could set a threshold to choose whether we have a positive ID of that category.</p>
+<p>One way to do this is by treating each output activation separately as a binary classifier, then using crossentropy loss on each of the output activations separately rather than all together.</p>
+<section id="first-we-need-to-create-a-function-to-get-the-label" class="level2">
+<h2 class="anchored" data-anchor-id="first-we-need-to-create-a-function-to-get-the-label">First we need to create a function to get the label</h2>
+<p>We already have this, in the form of parent_label(), which returns a string version of the parent folder containing the image. However, we’re also going to tell fastai that the labels are multi-category labels, even though they’re not. The multi-category block expects a list of strings as input - so if we just pass in a string then that will get split into a list of characters - not what we want.</p>
+<p>I’m doing this so that the labels are converted to one hot encoded vectors, which will allow us to use binary cross-entropy loss.</p>
+<p>Specifying the target type as ‘MultiCategoryBlock’ in the fastai DataBlock will create a model which can handle multiple classes in a single image. Rather than strongly picking one class out of many, we’ll be choosing potentially many classes out of many. This has the beneficial side effect that we can threshold the output activations and create a ‘no class recognized’ output - an ability we don’t have when using cross-entropy loss across all the activations.</p>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_y(r): <span class="cf">return</span> parent_label(r).split(<span class="st">' '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_multi(inp, targ, thresh<span class="op">=</span><span class="fl">0.5</span>, sigmoid<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Compute accuracy when `inp` and `targ` are the same size."</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sigmoid: inp <span class="op">=</span> inp.sigmoid()</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((inp<span class="op">&gt;</span>thresh)<span class="op">==</span>targ.<span class="bu">bool</span>()).<span class="bu">float</span>().mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>boat_dls <span class="op">=</span> DataBlock(</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>, seed<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span>get_y,</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    item_tfms<span class="op">=</span>Resize(<span class="dv">128</span>),</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    batch_tfms<span class="op">=</span>aug_transforms()</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>).dataloaders(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> learn.lr_find()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-53-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(boat_dls, resnet18, pretrained<span class="op">=</span><span class="va">True</span>, metrics<span class="op">=</span>accuracy_multi)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time learn.fine_tune(<span class="dv">6</span>, base_lr<span class="op">=</span>lr[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.020967</td>
+      <td>0.877902</td>
+      <td>0.563636</td>
+      <td>00:13</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.947158</td>
+      <td>0.818463</td>
+      <td>0.545455</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.937178</td>
+      <td>0.750471</td>
+      <td>0.572727</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.897594</td>
+      <td>0.689925</td>
+      <td>0.627273</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.863008</td>
+      <td>0.640909</td>
+      <td>0.654545</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.827849</td>
+      <td>0.622816</td>
+      <td>0.663636</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.808169</td>
+      <td>0.619115</td>
+      <td>0.660606</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="using-16-bit-floating-point-type" class="level1">
+<h1>Using 16 bit floating point type</h1>
+<p>We can run this model using 16 bit numbers, which speeds up training and adds some granularity to the loss surface, which can help the model to generalize better.</p>
+<div class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.callback.fp16 <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(boat_dls, resnet18, pretrained<span class="op">=</span><span class="va">True</span>, metrics<span class="op">=</span>accuracy_multi).to_fp16()</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time learn.fine_tune(<span class="dv">6</span>, base_lr<span class="op">=</span>lr[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.086145</td>
+      <td>0.876154</td>
+      <td>0.563636</td>
+      <td>00:13</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.105501</td>
+      <td>0.791514</td>
+      <td>0.569697</td>
+      <td>00:12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.058075</td>
+      <td>0.716644</td>
+      <td>0.581818</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.002346</td>
+      <td>0.651663</td>
+      <td>0.645455</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.962127</td>
+      <td>0.624689</td>
+      <td>0.666667</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.928638</td>
+      <td>0.611212</td>
+      <td>0.675758</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.899602</td>
+      <td>0.611228</td>
+      <td>0.678788</td>
+      <td>00:12</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 6.25 s, sys: 9.32 s, total: 15.6 s
+Wall time: 1min 32s</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-56-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> learn.lr_find()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-57-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">8</span>, lr_max<span class="op">=</span><span class="bu">slice</span>(lr[<span class="dv">0</span>]<span class="op">/</span><span class="dv">100</span>, lr[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.607456</td>
+      <td>62.795040</td>
+      <td>0.587879</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.513998</td>
+      <td>2.135366</td>
+      <td>0.706061</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.459160</td>
+      <td>9.297318</td>
+      <td>0.687879</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.420412</td>
+      <td>2.213437</td>
+      <td>0.757576</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.383483</td>
+      <td>0.640557</td>
+      <td>0.839394</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.348396</td>
+      <td>0.385552</td>
+      <td>0.848485</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.317297</td>
+      <td>0.342170</td>
+      <td>0.869697</td>
+      <td>00:12</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.295537</td>
+      <td>0.346389</td>
+      <td>0.872727</td>
+      <td>00:13</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-59-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> learn.lr_find()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-60-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">8</span>, lr_max<span class="op">=</span><span class="bu">slice</span>(lr[<span class="dv">0</span>]<span class="op">/</span><span class="dv">100</span>, lr[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy_multi</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.253123</td>
+      <td>0.341837</td>
+      <td>0.866667</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.218674</td>
+      <td>0.335589</td>
+      <td>0.869697</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.210459</td>
+      <td>0.330646</td>
+      <td>0.866667</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.208750</td>
+      <td>0.342269</td>
+      <td>0.869697</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.208109</td>
+      <td>0.342271</td>
+      <td>0.869697</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.209671</td>
+      <td>0.347175</td>
+      <td>0.869697</td>
+      <td>00:13</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.205469</td>
+      <td>0.337658</td>
+      <td>0.872727</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.198987</td>
+      <td>0.339411</td>
+      <td>0.872727</td>
+      <td>00:13</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-62-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="weve-reached-87-accuracy-with-our-binary-cross-entropy-model." class="level1">
+<h1>We’ve reached 87% accuracy with our Binary Cross Entropy model.</h1>
+<p>This isn’t as good as the 93% we achieved using Cross Entropy loss, but perhaps we can adjust the classification threshold in order to allow fewer false positives or false negatives.</p>
+<p>Remember our model is outputting a vector of activations. We’re currently picking an arbitrary classification threshold of 0.5.</p>
+<div class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dls.one_batch()</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>learn.model(x)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="106">
+<pre><code>TensorBase([[ 1.0367, -1.7452, -3.1625],
+            [ 3.0763, -1.6344, -6.4808],
+            [ 0.2218,  0.5060, -6.9259],
+            [-0.8240,  1.0332, -5.1113],
+            [-1.3156, -0.7857, -0.0276]], device='cuda:0',
+           grad_fn=&lt;AliasBackward0&gt;)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>learn.metrics <span class="op">=</span> partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>val_loss, val_accuracy <span class="op">=</span> learn.validate()</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>val_loss, val_accuracy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display" data-execution_count="110">
+<pre><code>(0.3394106328487396, 0.7969697713851929)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>preds, targs <span class="op">=</span> learn.get_preds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+</div>
+<p>By default, get_preds applies the output activation</p>
+<div class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>preds.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+<pre><code>TensorBase(1.)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> torch.linspace(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">39</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> [accuracy_multi(preds, targs, thresh<span class="op">=</span>i, sigmoid<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> i <span class="kw">in</span> xs]</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xs, accs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="BCEmodel_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We seem to be in the right ballpark with 0.5 as the threshold. Trying 0.4 instead might improve the accuracy a little.</p>
+</section>
+<section id="now-we-can-check-whether-the-model-makes-more-sensible-predictions-for-unseen-training-items" class="level1">
+<h1>Now we can check whether the model makes more sensible predictions for unseen training items</h1>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/testboat1.JPG'</span>)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/testboat1.JPG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted ['canoe', 'kayak', 'sailboat'] with a confidence of TensorBase([0.9508, 0.5829, 0.7437])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<p><img src="BCEmodel_files/figure-html/cell-68-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="that-looks-pretty-good." class="level1">
+<h1>That looks pretty good.</h1>
+<p>As expected, the model isn’t as confident as when we used Crossentropy loss.</p>
+<p>Let’s try some more images</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/testboat2.JPG'</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(probs)</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/testboat2.JPG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted ['sailboat'] with a confidence of TensorBase([0.6927])
+TensorBase([0.4364, 0.2219, 0.6927])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<p><img src="BCEmodel_files/figure-html/cell-69-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The model got this one wrong whereas before it identified it correctly. Perhaps the model needs to train for longer when we use this approach. It doesn’t have the same speed of convergence as the first method.</p>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>prediction, index, probs <span class="op">=</span> learn.predict(<span class="st">'images/leaves.jpg'</span>)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The model predicted </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> with a confidence of </span><span class="sc">{</span>probs[index]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(probs)</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>Image.<span class="bu">open</span>(<span class="st">'images/leaves.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The model predicted [] with a confidence of TensorBase([])
+TensorBase([0.2653, 0.2071, 0.0991])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<p><img src="BCEmodel_files/figure-html/cell-70-output-4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="no-class-predicted-our-image-recognition-model-using-binary-crossentropy-works" class="level1">
+<h1>No-class predicted: Our image recognition model using binary crossentropy works!</h1>
+<p>In this final example the model predicted a low score for each of the classes, rather than returning an artificially high probability like when we used cross-entropy loss. The model predicted ‘no class’!</p>
+</section>
+<section id="heres-a-summary-of-the-resnet-18-model-architecture." class="level1">
+<h1>Here’s a summary of the resnet 18 model architecture.</h1>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>learn.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>Sequential (Input shape: 64 x 3 x 128 x 128)
+============================================================================
+Layer (type)         Output Shape         Param #    Trainable 
+============================================================================
+                     64 x 64 x 64 x 64   
+Conv2d                                    9408       True      
+BatchNorm2d                               128        True      
+ReLU                                                           
+____________________________________________________________________________
+                     64 x 64 x 32 x 32   
+MaxPool2d                                                      
+Conv2d                                    36864      True      
+BatchNorm2d                               128        True      
+ReLU                                                           
+Conv2d                                    36864      True      
+BatchNorm2d                               128        True      
+Conv2d                                    36864      True      
+BatchNorm2d                               128        True      
+ReLU                                                           
+Conv2d                                    36864      True      
+BatchNorm2d                               128        True      
+____________________________________________________________________________
+                     64 x 128 x 16 x 16  
+Conv2d                                    73728      True      
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     True      
+BatchNorm2d                               256        True      
+Conv2d                                    8192       True      
+BatchNorm2d                               256        True      
+Conv2d                                    147456     True      
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     True      
+BatchNorm2d                               256        True      
+____________________________________________________________________________
+                     64 x 256 x 8 x 8    
+Conv2d                                    294912     True      
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     True      
+BatchNorm2d                               512        True      
+Conv2d                                    32768      True      
+BatchNorm2d                               512        True      
+Conv2d                                    589824     True      
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     True      
+BatchNorm2d                               512        True      
+____________________________________________________________________________
+                     64 x 512 x 4 x 4    
+Conv2d                                    1179648    True      
+BatchNorm2d                               1024       True      
+ReLU                                                           
+Conv2d                                    2359296    True      
+BatchNorm2d                               1024       True      
+Conv2d                                    131072     True      
+BatchNorm2d                               1024       True      
+Conv2d                                    2359296    True      
+BatchNorm2d                               1024       True      
+ReLU                                                           
+Conv2d                                    2359296    True      
+BatchNorm2d                               1024       True      
+____________________________________________________________________________
+                     64 x 512 x 1 x 1    
+AdaptiveAvgPool2d                                              
+AdaptiveMaxPool2d                                              
+____________________________________________________________________________
+                     64 x 1024           
+Flatten                                                        
+BatchNorm1d                               2048       True      
+Dropout                                                        
+____________________________________________________________________________
+                     64 x 512            
+Linear                                    524288     True      
+ReLU                                                           
+BatchNorm1d                               1024       True      
+Dropout                                                        
+____________________________________________________________________________
+                     64 x 3              
+Linear                                    1536       True      
+____________________________________________________________________________
+
+Total params: 11,705,408
+Total trainable params: 11,705,408
+Total non-trainable params: 0
+
+Optimizer used: &lt;function Adam at 0x7ff0bb04b1f0&gt;
+Loss function: FlattenedLoss of BCEWithLogitsLoss()
+
+Model unfrozen
+
+Callbacks:
+  - TrainEvalCallback
+  - CastToTensor
+  - Recorder
+  - ProgressCallback</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<ul>
+<li>Many of the components for creating image recognition models is made easy with fastai.</li>
+<li>Using cross-entropy loss results in faster, more efficient training for single class classifier models.</li>
+<li>Cross-entropy loss can cause a model to drive its internal activations ever higher. This can produce an over-confident model.</li>
+<li>Using Binary-Crossentropy loss on each output activation with a one hot encoded vector of targets doesn’t train as quickly as regular crossentropy loss, but it does give us the option to classify multiple classes in one example, and to set a threshold below which we don’t make a positive ID.</li>
+</ul>
+</section>
+<section id="thanks-for-reading" class="level1">
+<h1>Thanks for reading :)</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

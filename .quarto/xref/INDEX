@@ -46,5 +46,8 @@
   },
   "posts/boat-recogniser/boats-example.ipynb": {
     "boats-example.html": "f75d3bba"
+  },
+  "posts/BCE-model/BCEmodel.ipynb": {
+    "BCEmodel.html": "1a4b1a4a"
   }
 }

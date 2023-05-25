@@ -15,7 +15,7 @@ website:
         href: https://www.linkedin.com/in/michael-gallimore-4104536a/
 format:
   html:
-    theme: solar
+    theme: pulse
     # themes: https://bootswatch.com/
     css: styles.css
 

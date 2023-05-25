@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Mike’s Machine Learning Blog",
     "section": "",
-    "text": "Training an image classification model using the FastAI library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 16, 2023\n\n\nMichael Gallimore\n\n\n\n\n\n\nNo matching items"
+    "text": "Building a boat recognizer using the fast.ai library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 16, 2023\n\n\nMichael Gallimore\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -32,7 +32,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hello! I’m a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains\nA graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.\nI am proficient in Python. I studied Machine Learning through the FastAI course and textbooks. I’ve gained a solid practical understanding of how to build and train ML models including convolutional neural networks, random forests, segmentation models, and collaborative filtering models.\nCurrently I’m working on a project to identify animal species in audio recordings."
+    "text": "Hi! I’m a software engineer living in Squamish BC, Canada. I moved out here to pursue a life in the mountains.\nA graduate of Acoustics, I have experience in electronics, digital signal processing, mechanical engineering, and a good math background.\nI am proficient in Python. I studied Machine Learning through the FastAI course and textbooks. I’ve gained a solid practical understanding of how to build and train ML models including convolutional neural networks, random forests, segmentation models, and collaborative filtering models.\nCurrently I’m working on a project to identify animal species in audio recordings."
   },
   {
     "objectID": "posts/test-post copy/index.html",
@@ -159,5 +159,75 @@
     "title": "MG ML",
     "section": "Train a model",
     "text": "Train a model\n\nlearn = vision_learner(dataloaders, resnet18, metrics=error_rate)\nlearn.fine_tune(4)\nlearn.recorder.plot_loss()\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      1.512921\n      0.358238\n      0.145455\n      00:13\n    \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      0.609499\n      0.233965\n      0.100000\n      00:13\n    \n    \n      1\n      0.459157\n      0.267047\n      0.118182\n      00:13\n    \n    \n      2\n      0.373013\n      0.286165\n      0.118182\n      00:13\n    \n    \n      3\n      0.338020\n      0.260390\n      0.109091\n      00:13"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html",
+    "href": "posts/BCE-model/BCEmodel.html",
+    "title": "MG ML",
+    "section": "",
+    "text": "In this notebook we use the fastai library to build and train a convolutional neural network in PyTorch to recognize images of canoes, kayaks and sailboats.\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#choose-a-set-of-categories-for-the-classification-model",
+    "href": "posts/BCE-model/BCEmodel.html#choose-a-set-of-categories-for-the-classification-model",
+    "title": "MG ML",
+    "section": "Choose a set of categories for the classification model",
+    "text": "Choose a set of categories for the classification model\n\nboat_types = 'canoe', 'kayak', 'sailboat'\n\n\npath = Path('boats')\n\nDownload images from chosen categories.\nThis cell may take a few minutes to run\n\nif not path.exists():\n    path.mkdir()\n    for boat in boat_types:\n        dest = (path/boat)\n        dest.mkdir(exist_ok=True)\n        results = search_images(boat)\n        download_images(dest, urls=results)\n\n\n!ls {path}\npath\n\ncanoe  kayak  sailboat\n\n\nPath('boats')\n\n\n\nfilenames = get_image_files(path)\nfilenames\n\n(#554) [Path('boats/sailboat/3b873c96-0d1f-4404-9aae-af25d3805177.jpg'),Path('boats/sailboat/6336c57d-8ad9-4318-836c-fba58b5357be.jpg'),Path('boats/sailboat/d2a981d0-0d3e-4b0e-a077-a5cbda1a41b0.JPG'),Path('boats/sailboat/da7dc60e-7c83-4807-9fc1-a0f5061a5080.jpg'),Path('boats/sailboat/168643af-803b-4783-8c6b-a785157c481e.jpeg'),Path('boats/sailboat/f4055206-199c-42a8-bf74-8ed6c4dc7e08.jpg'),Path('boats/sailboat/d5883260-5325-41cb-a645-016051c37819.jpg'),Path('boats/sailboat/4b44e5d8-75e1-413b-a9b9-bd3f19b63df4.jpg'),Path('boats/sailboat/86d8f1b9-b75b-467f-8476-2d91805a150b.jpg'),Path('boats/sailboat/e07b4c1d-a717-4c10-9059-005016798081.jpeg')...]"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#some-of-the-terminology-in-pytorch-fastai-can-be-confusing.-they-can-have-similar-names-which-mean-very-specific-things.-here-are-some-definintions",
+    "href": "posts/BCE-model/BCEmodel.html#some-of-the-terminology-in-pytorch-fastai-can-be-confusing.-they-can-have-similar-names-which-mean-very-specific-things.-here-are-some-definintions",
+    "title": "MG ML",
+    "section": "Some of the terminology in PyTorch fastai can be confusing. They can have similar names which mean very specific things. Here are some definintions",
+    "text": "Some of the terminology in PyTorch fastai can be confusing. They can have similar names which mean very specific things. Here are some definintions\nDataset: an iterable over tuples containing images with their corresponding category.  Datasets: a fastai class which joins together a training dataset and a validation dataset into one object. DataLoader: a PyTorch iterable returning a batch of datasets. DataLoaders: a fastai iterable which splits dataloaders into training and validation datasets.  batch: The sample of the dataset loaded in parallel and passed to the model during one training loop."
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#use-the-fastai-datablock-to-create-a-way-to-load-datasets-and-dataloaders",
+    "href": "posts/BCE-model/BCEmodel.html#use-the-fastai-datablock-to-create-a-way-to-load-datasets-and-dataloaders",
+    "title": "MG ML",
+    "section": "Use the fastai DataBlock to create a way to load datasets and dataloaders",
+    "text": "Use the fastai DataBlock to create a way to load datasets and dataloaders\n\nboats = DataBlock(\n    blocks=(ImageBlock, CategoryBlock),\n    get_items=get_image_files,\n    splitter=RandomSplitter(valid_pct=0.2, seed=42),\n    get_y=parent_label,\n    item_tfms=Resize(128)\n)\n\n\ndataloaders = boats.dataloaders(path)\n\nThe dataloaders object provides a way of loading batches of data from a location. It contains specific details on how the data should be transformed, how big a validation set to make, and a bunch of helper functions such as show.batch() which allow quick visualization and troubleshooting."
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#training-and-validation-sets",
+    "href": "posts/BCE-model/BCEmodel.html#training-and-validation-sets",
+    "title": "MG ML",
+    "section": "Training and validation sets",
+    "text": "Training and validation sets\nOur data is split into training and validation sets. 20% of the data is in the validation set, and 80% is in the training set.\nHere we can see a sample of one batch from the training set. The input feature is an image of a boat, and the target label is the class of the boat. There are three classes: canoe, sailboat and kayak. We can see using the show_batch function that the images and labels are all loaded and re-sized correctly.\n\ndataloaders.train.show_batch()"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#pre-trained-models.",
+    "href": "posts/BCE-model/BCEmodel.html#pre-trained-models.",
+    "title": "MG ML",
+    "section": "Pre-trained models.",
+    "text": "Pre-trained models.\nHere we take a pre-trained image recognition model and fine tune it to learn the classes in our dataset. This resnet18 model was originally trained on the ImageNet dataset to recognize over 20,000 classes, with hundreds of examples in each class. We can take advantage of the large amount of work which went into training this model.\nUnder the hood fastai replaces the output layers of the pre-trained model with randomly initialized layers with the same number of output nodes as the number of classes we’re trying to predict (three: ‘canoe’, ‘kakak’, ‘sailboat’). When we re-train the model, most of the work goes into training these final layers of the network, until the model learns to represent the categories we’re looking for. This works even when the category we’re looking for wasn’t seen by the pre-trained model’s original dataset.\nThe earlier layers of a neural network tend to learn things like gradients, edges, colour, and the semantic meaning increases in deeper layers until the final layer represents the concept level output: canoe, kayak, sailboat. These earlier layers are useful for picking out features in a broad set of images - not just the ones the model was trained on."
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#metrics",
+    "href": "posts/BCE-model/BCEmodel.html#metrics",
+    "title": "MG ML",
+    "section": "Metrics",
+    "text": "Metrics\nMetrics are a human readable representation of the performance of our model. Error rate is a pretty simple and easy to understand metric: what portion of the examples from the validation set did we mis-classify."
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#loss",
+    "href": "posts/BCE-model/BCEmodel.html#loss",
+    "title": "MG ML",
+    "section": "Loss",
+    "text": "Loss\nLoss can be thought of as a sort of punishment function. The training process seeks to minimize loss, and the gradient of the loss function is used to calculate a better set of parameters during model training. The loss function can be thought of as a kind of error measure, but it is designed to be read by a machine, not a human, and to have smooth gradients. Lower loss usually means a better model. When plotting loss per epoch, decreasing loss curves are a good sign which mean the model is improving. If the loss curves are noisy or increasing, it is an indicator that we might have picked too high a learning rate, or that the model is beginnign to over-fit.\n\nlearn = vision_learner(dataloaders, resnet18, metrics=error_rate)\nlearn.fine_tune(4)\nlearn.recorder.plot_loss()\n\nDownloading: \"https://download.pytorch.org/models/resnet18-f37072fd.pth\" to /root/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      1.571849\n      0.666472\n      0.163636\n      00:14\n    \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      error_rate\n      time\n    \n  \n  \n    \n      0\n      0.534734\n      0.270972\n      0.118182\n      00:15\n    \n    \n      1\n      0.436475\n      0.234348\n      0.081818\n      00:15\n    \n    \n      2\n      0.353536\n      0.214399\n      0.063636\n      00:15\n    \n    \n      3\n      0.313201\n      0.206994\n      0.063636\n      00:14"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#great-again-we-got-a-sensible-preciction-of-88-probability-of-a-canoe.",
+    "href": "posts/BCE-model/BCEmodel.html#great-again-we-got-a-sensible-preciction-of-88-probability-of-a-canoe.",
+    "title": "MG ML",
+    "section": "Great, again we got a sensible preciction of 88% probability of a canoe.",
+    "text": "Great, again we got a sensible preciction of 88% probability of a canoe.\n\nprediction, index, probs = learn.predict('images/leaves.jpg')\nprint(f\"The model predicted {prediction} with a confidence of {probs[index]}\")\nprint(probs)\nImage.open('images/leaves.jpg')\n\n\n\n\n\n\n\n\nThe model predicted canoe with a confidence of 0.5352954268455505\nTensorBase([0.5353, 0.1248, 0.3399])"
+  },
+  {
+    "objectID": "posts/BCE-model/BCEmodel.html#first-we-need-to-create-a-function-to-get-the-label",
+    "href": "posts/BCE-model/BCEmodel.html#first-we-need-to-create-a-function-to-get-the-label",
+    "title": "MG ML",
+    "section": "First we need to create a function to get the label",
+    "text": "First we need to create a function to get the label\nWe already have this, in the form of parent_label(), which returns a string version of the parent folder containing the image. However, we’re also going to tell fastai that the labels are multi-category labels, even though they’re not. The multi-category block expects a list of strings as input - so if we just pass in a string then that will get split into a list of characters - not what we want.\nI’m doing this so that the labels are converted to one hot encoded vectors, which will allow us to use binary cross-entropy loss.\nSpecifying the target type as ‘MultiCategoryBlock’ in the fastai DataBlock will create a model which can handle multiple classes in a single image. Rather than strongly picking one class out of many, we’ll be choosing potentially many classes out of many. This has the beneficial side effect that we can threshold the output activations and create a ‘no class recognized’ output - an ability we don’t have when using cross-entropy loss across all the activations.\n\ndef get_y(r): return parent_label(r).split(' ')\n\n\ndef accuracy_multi(inp, targ, thresh=0.5, sigmoid=True):\n    \"Compute accuracy when `inp` and `targ` are the same size.\"\n    if sigmoid: inp = inp.sigmoid()\n    return ((inp>thresh)==targ.bool()).float().mean()\n\n\nboat_dls = DataBlock(\n    blocks=(ImageBlock, MultiCategoryBlock),\n    get_items=get_image_files,\n    splitter=RandomSplitter(valid_pct=0.2, seed=42),\n    get_y=get_y,\n    item_tfms=Resize(128),\n    batch_tfms=aug_transforms()\n).dataloaders(path)\n\n\nlr = learn.lr_find()\n\n\n\n\n\n\n\n\n\n\n\n\nlearn = vision_learner(boat_dls, resnet18, pretrained=True, metrics=accuracy_multi)\n%time learn.fine_tune(6, base_lr=lr[0])\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      accuracy_multi\n      time\n    \n  \n  \n    \n      0\n      1.020967\n      0.877902\n      0.563636\n      00:13\n    \n  \n\n\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      accuracy_multi\n      time\n    \n  \n  \n    \n      0\n      0.947158\n      0.818463\n      0.545455\n      00:14\n    \n    \n      1\n      0.937178\n      0.750471\n      0.572727\n      00:13\n    \n    \n      2\n      0.897594\n      0.689925\n      0.627273\n      00:14\n    \n    \n      3\n      0.863008\n      0.640909\n      0.654545\n      00:14\n    \n    \n      4\n      0.827849\n      0.622816\n      0.663636\n      00:13\n    \n    \n      5\n      0.808169\n      0.619115\n      0.660606\n      00:14"
   }
 ]
