@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Mike’s Machine Learning Blog",
     "section": "",
-    "text": "Building a boat recognizer using the fast.ai library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
+    "text": "What is an embedding layer and how does it work?\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nBuilding a boat recognizer using the fast.ai library\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nExploring probability distributions\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/BCE-model/BCEmodel.html#choose-a-set-of-categories-for-the-classification-model",
@@ -131,5 +131,61 @@
     "title": "MG ML",
     "section": "",
     "text": "leaves\n\n\nIn this notebook we build and train a convolutional neural network based classifier model in PyTorch recognize images of canoes, kayaks and sailboats. We use the fastai library to speed up the process and get us to a working model with less code.\nThis notebook was used for a presentation at ML Squamish to take first time coders from a no-code background to training their first image recognition model in an evening.\nWe explore some different loss functions and training approaches.\nTopics covered: - Training and validation sets - Image augmentations - Cross entropy loss - Binary Crossentropy Loss - Learning rate finder\nLet’s get started!"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html",
+    "href": "posts/embeddings/embeddings.html",
+    "title": "MG ML",
+    "section": "",
+    "text": "In this example I’ll make a collaborative filtering model (recommender system) which uses an entity embedding as part of a system for recommending books to users.\nEmbeddings are a neat way to take a large number of individual items (users, products, locations for example), and represent each item using an n-dimensional vector instead of using its unique id. At first this might sound like it would increase the size and complexity of the model - since each item now needs an additional vector representation - but in fact this process reduces the number of individual inputs the model needs to see to be able to make predictions.\nFor example, if we had an embedding for 1000 book titles, without an embedding layer the model would need to see each unique ID and learn the difference between them. An embedding vector for each of these book titles might be 2 dimensions deep, and might encode for each book’s sci-fi-ness and its length. This means we could feed this two dimensional embedding vector as input to the model rather than the 1000 individual titles. Since those inputs represent something real about the book, that might be enough information to make sensible predictions with. In a sense the embedding compresses information about each of the N inputs into an n dimensional vector.\nIn this blog post I’ll follow a similar process to the one outlined in the fast.ai course which used the movielens dataset. I’ll aim to explain some nuances about embedding layers, since I found this concept pretty confusing at first. Now that I’ve got my head around them I’m pretty amazed at how elegant, powerful and useful embeddings can be, and I’m excited to start trying out creative uses for embeddings.\nRead more on embeddings in this paper: Guo, Cheng et al. “Entity Embeddings of Categorical Variables”\n\nimport numpy as np # linear algebra\nimport pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\nfrom fastai.collab import *\nfrom fastai.tabular.all import *\n\n\ndef display_all(df):\n    with pd.set_option('display.max_columns', 0, 'display.max_rows', 0):\n        print(df)\n\n\npath = Path('/kaggle/input/book-recommendation-dataset/')"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#embeddings",
+    "href": "posts/embeddings/embeddings.html#embeddings",
+    "title": "MG ML",
+    "section": "Embeddings",
+    "text": "Embeddings\nSince there are hundreds of thousands of individual user IDs, and many more book titles, it will be useful to compress this data in some way - in a way which keeps the relevant information about each user and book, but doesn’t require the model to learn each individual user ID or book title. This is where Embeddings come in handy.\n\ndls = CollabDataLoaders.from_df(ratings, item_name='title', bs=16)"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#take-a-sample",
+    "href": "posts/embeddings/embeddings.html#take-a-sample",
+    "title": "MG ML",
+    "section": "Take a sample",
+    "text": "Take a sample\nTo speed up development and testing We’ll work with a random sample of 300,000 users from the dataset.\n\nnumber_of_samples = 300000\ndf=ratings.sample(number_of_samples)\ndls = CollabDataLoaders.from_df(df, item_name='title', bs=64)"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#sample-only-popular-books-and-users-with-lots-of-entries.",
+    "href": "posts/embeddings/embeddings.html#sample-only-popular-books-and-users-with-lots-of-entries.",
+    "title": "MG ML",
+    "section": "Sample only popular books and users with lots of entries.",
+    "text": "Sample only popular books and users with lots of entries.\nDeliberately selecting from the most read titles, and the most active readers could be a way of getting the information density up a little. This is definitely a design decision which should be scrutinized, since it biases the system towards more popular items, but it could be a good way to jumpstart training.\nPlus it doesn’t make a lot of sense to be training a collaborative filtering model on users who have read only one book: there wouldn’t be any second item to lookup and recommend for another user who has read the same book.\n\nbook_count = len(set(ratings.title))\npopular_books = ratings.title.value_counts()[:1000].keys()\n\nreader_count = len(set(ratings.user))\navid_readers = ratings.user.value_counts()[:1000].keys()\n\n\nlen(ratings)\n\n1031136\n\n\nOverwriting the variable dense_df with this new selection\n\ndense_df = ratings[ratings.title.isin(popular_books)]\ndense_df = (dense_df[dense_df.user.isin(avid_readers)])\nprint(len(dense_df))\n\n76402\n\n\nNow we’ve got the number of samples in the database down to 76402, and it only contains the top 1000 readers and the top 1000 books."
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#make-a-new-dataloaders-object-to-draw-training-and-validation-samples-from-this-new-dataframe.",
+    "href": "posts/embeddings/embeddings.html#make-a-new-dataloaders-object-to-draw-training-and-validation-samples-from-this-new-dataframe.",
+    "title": "MG ML",
+    "section": "Make a new dataloaders object to draw training and validation samples from this new dataframe.",
+    "text": "Make a new dataloaders object to draw training and validation samples from this new dataframe.\n\ndense_dls = CollabDataLoaders.from_df(dense_df, item_name='title', bs=64)\nn_users = len(dense_dls.classes['user'])\nn_titles = len(dense_dls.classes['title'])\n\n\nmodel = DotProduct(n_users, n_titles, n_factors=50)"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#lets-see-how-the-model-trains-now",
+    "href": "posts/embeddings/embeddings.html#lets-see-how-the-model-trains-now",
+    "title": "MG ML",
+    "section": "Let’s see how the model trains now",
+    "text": "Let’s see how the model trains now\n\nlearn = Learner(dense_dls, model, loss_func=MSELossFlat())\nlearn.fit_one_cycle(5, 1e-3)\n\n\n\n\n\n\n\n  \n    \n      epoch\n      train_loss\n      valid_loss\n      time\n    \n  \n  \n    \n      0\n      0.169560\n      0.172441\n      00:06\n    \n    \n      1\n      0.119379\n      0.122923\n      00:06\n    \n    \n      2\n      0.103940\n      0.114699\n      00:06\n    \n    \n      3\n      0.098195\n      0.113169\n      00:06\n    \n    \n      4\n      0.099816\n      0.113051\n      00:06\n    \n  \n\n\n\n\nGreat - the training only takes 5s per epoch, and we’re still seeing convergence after 5 epochs. Let’s try to improve from here"
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#thinking-about-latent-factors-as-components-of-a-vector-in-an-n-dimensional-feature-space",
+    "href": "posts/embeddings/embeddings.html#thinking-about-latent-factors-as-components-of-a-vector-in-an-n-dimensional-feature-space",
+    "title": "MG ML",
+    "section": "Thinking about latent factors as components of a vector in an n-dimensional feature space",
+    "text": "Thinking about latent factors as components of a vector in an n-dimensional feature space\nHere are the factors for each of the users in the batch:\n\nmodel.user_factors(batch[:,0])\n\ntensor([[ 0.0206,  0.0324, -0.0256,  ..., -0.0972,  0.0861, -0.0837],\n        [ 0.0978,  0.1441,  0.0092,  ..., -0.0022, -0.0379,  0.0745],\n        [-0.0334,  0.0943,  0.0024,  ...,  0.0780, -0.0867, -0.0408],\n        ...,\n        [ 0.0150,  0.0170,  0.0297,  ...,  0.0246, -0.0477, -0.0407],\n        [-0.0341, -0.0660, -0.0711,  ...,  0.0390,  0.0392,  0.0218],\n        [ 0.0929,  0.0700,  0.0584,  ...,  0.0826, -0.0621,  0.0504]],\n       device='cuda:0', grad_fn=<EmbeddingBackward0>)\n\n\nEach of these numbers represents a learned latent factor for that user. The latent factors can can be thought of as the contribution / component to a vector in n-dimensional space, where each number is a different axis’s contribution. The factors are all orthoganal to oneanother. They can represent things like taste, genre, age etc.\nFor example: if user A has 3 latent factors x, y, z, and these have values 1, 0.2, -0.9, then we can imagine a vector in 3d space which extends along the x dimension by 1, along y by 0.2, and extends negatively along the z dimension by 1.\nAnother user, or book title, might point in a very similar direction. This would mean that their factors overlap a lot and tend not to cancel out.\nEach of these dimensions could code for something like ‘enjoys horror books’, ‘enjoys shorter books’, younger.\nIf there was another user who’s factors were -1, 0.2, 1, we might say that they had the opposite taste for horror stories, that they have the same liking for shorter books, and that they are older.\nThe latent factors encode for real world meaning, but the factors themselves aren’t chosen by the engineer when setting up the neural network - rather they emerge from the relationships between books, users and ratings as the model trains."
+  },
+  {
+    "objectID": "posts/embeddings/embeddings.html#finding-the-books-with-the-highest-bias",
+    "href": "posts/embeddings/embeddings.html#finding-the-books-with-the-highest-bias",
+    "title": "MG ML",
+    "section": "Finding the books with the highest bias",
+    "text": "Finding the books with the highest bias\nHere’s a list of books with a high bias: they end up having a higher rating across the board, despite the specific features which were learned to describe the books. Intuitively this means that they’re high quality - since they get consistently high ratings despite their genre and the users’ tastes.\n\nbooks_bias = learn.model.title_bias.weight.squeeze()\nidxs = books_bias.argsort(descending=True)[:20]\n[dense_dls.classes['title'][i] for i in idxs]\n\n['Harry Potter and the Order of the Phoenix (Book 5)',\n 'Harry Potter and the Prisoner of Azkaban (Book 3)',\n \"Harry Potter and the Sorcerer's Stone (Book 1)\",\n 'Harry Potter and the Chamber of Secrets (Book 2)',\n 'To Kill a Mockingbird',\n '84 Charing Cross Road',\n \"Harry Potter and the Sorcerer's Stone (Harry Potter (Paperback))\",\n 'The Lovely Bones: A Novel',\n 'A Wrinkle in Time',\n 'Harry Potter and the Goblet of Fire (Book 4)',\n 'The Little Prince',\n 'The Secret Garden',\n 'The Da Vinci Code',\n 'Girl in Hyacinth Blue',\n 'Stupid White Men ...and Other Sorry Excuses for the State of the Nation!',\n 'Lord of the Flies',\n 'Dragonfly in Amber',\n \"Dude, Where's My Country?\",\n 'Fahrenheit 451',\n 'Carrie']"
   }
 ]

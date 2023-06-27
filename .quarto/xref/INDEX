@@ -52,5 +52,8 @@
   },
   "posts/BCE-model/bcemd.qmd": {
     "bcemd.html": "23e2e56c"
+  },
+  "posts/embeddings/embeddings.ipynb": {
+    "embeddings.html": "0d8f2070"
   }
 }
