@@ -10,6 +10,9 @@ about:
     - icon: github
       text: Github
       href: https://github.com/mgallimore88
+    - icon: file-earmark-pdf
+      text: Résumé
+      href: https://docs.google.com/document/d/1UwSouuiXgYoGOntksoh9NTiJGVgJDvIJhyoTeJR0ECI/edit?pli=1
 
 ---
 
