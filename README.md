@@ -1,5 +1,8 @@
 This is my personal blog site where I share what I've been learning. 
 
+The site is hosted here:
+https://mgallimore88.github.io/blog/
+
 Optional themes:
 
 
