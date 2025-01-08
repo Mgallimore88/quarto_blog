@@ -55,5 +55,8 @@
   },
   "posts/embeddings/embeddings.ipynb": {
     "embeddings.html": "0d8f2070"
+  },
+  "posts/kaggle-insurance-competition/insurance_competition.ipynb": {
+    "insurance_competition.html": "f4ac8be0"
   }
 }
