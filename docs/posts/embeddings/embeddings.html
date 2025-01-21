@@ -182,7 +182,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="what-is-an-embedding-layer-and-how-does-it-work" class="level1">
 <h1>What is an embedding layer and how does it work?</h1>
-<p><img src="./network.jpg" class="img-fluid" alt="image"> In this example I’ll make a collaborative filtering model (recommender system) which uses an entity embedding as part of a system for recommending books to users.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./network.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image</figcaption><p></p>
+</figure>
+</div>
+<p>In this example I’ll make a collaborative filtering model (recommender system) which uses an entity embedding as part of a system for recommending books to users.</p>
 <p>Embeddings are a neat way to take a large number of individual items (users, products, locations for example), and represent each item using an n-dimensional vector instead of using its unique id. At first this might sound like it would increase the size and complexity of the model - since each item now needs an additional vector representation - but in fact this process reduces the number of individual inputs the model needs to see to be able to make predictions.</p>
 <p>For example, if we had an embedding for 1000 book titles, without an embedding layer the model would need to see each unique ID and learn the difference between them. An embedding vector for each of these book titles might be 2 dimensions deep, and might encode for each book’s sci-fi-ness and its length. This means we could feed this two dimensional embedding vector as input to the model rather than the 1000 individual titles. Since those inputs represent something real about the book, that might be enough information to make sensible predictions with. In a sense the embedding compresses information about each of the N inputs into an n dimensional vector.</p>
 <p>In this blog post I’ll follow a similar process to the one outlined in the fast.ai course which used the movielens dataset. I’ll aim to explain some nuances about embedding layers, since I found this concept pretty confusing at first. Now that I’ve got my head around them I’m pretty amazed at how elegant, powerful and useful embeddings can be, and I’m excited to start trying out creative uses for embeddings.</p>

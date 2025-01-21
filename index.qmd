@@ -9,4 +9,7 @@ listing:
   filter-ui: false
 page-layout: full
 title-block-banner: false
+toc: true           # Enables the Table of Contents
+toc-location: left  # Options: left, right, float, or inline
+toc-depth: 2        # (Optional) Controls the depth of headings included (e.g., H1 and H2)
 ---

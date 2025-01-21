@@ -180,6 +180,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="exploring-the-capability-of-neural-networks-to-solve-simple-linear-and-nonlinear-algebraic-equations." class="level1">
 <h1>Exploring the capability of neural networks to solve simple linear and nonlinear algebraic equations.</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="squeeze.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">squeeze</figcaption><p></p>
+</figure>
+</div>
 <p>Topics covered: - PyTorch - Feature Crosses - Linear and nonlinear models - universal approximation theorem - interpreting loss curves</p>
 <p>In this example, I asked chat GPT to <em>generate a PyTorch training loop for a linear model, from a synthetic dataset</em>. The code produced was great. It gave me ideas and some framework code from which to develop my own understanding. Modifying and developing the code was a quick way to explore some new functions and explore some ideas in an interactive way.</p>
 <p>I wanted to get an intuitive understanding of the universal approximation theorem, in order to be able to better decide when to choose a neural network, and when to choose another type of model.</p>
@@ -624,7 +630,7 @@ Epoch 99: loss=1.1539671049831668e-06</code></pre>
 <p>PyTorch requires the features to have similar dimensions, so we use unsqueeze(1) to add superficial 1 dimension to the tensor at the index 1 dimension.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://i.stack.imgur.com/9AJJA.png" class="img-fluid figure-img"></p>
+<p><img src="squeeze.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">squeeze</figcaption><p></p>
 </figure>
 </div>
