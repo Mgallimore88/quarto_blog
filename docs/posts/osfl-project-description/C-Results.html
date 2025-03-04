@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MG ML – c-results</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MG ML</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mgallimore88"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mgallimore88@gmail.com"><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/michael-gallimore-4104536a/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="cnn-birdsong-classifer-evaluation" class="level1">
+<h1>CNN Birdsong Classifer Evaluation</h1>
+<p>This notebook collates the results of the <a href="https://github.com/Mgallimore88/osfl_cnn_recognizer">CNN birdsong detector</a> against different test sets and comparison with a state of the art multi-species model.</p>
+<p>Dataset creation, cleaning, test splits, and model training are described in a different notebook called project-description which can be found in the model development walkthrough.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/airobin.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">amerobin</figcaption><p></p>
+</figure>
+</div>
+<section id="performance-metrics-measured-on-a-balanced-test-set-of-1600-examples." class="level3">
+<h3 class="anchored" data-anchor-id="performance-metrics-measured-on-a-balanced-test-set-of-1600-examples.">Performance metrics measured on a balanced test set of 1600 examples.</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/osfl-optimal-threshold-precision-recall-accuracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">title</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="some-notes-on-binary-classifer-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="some-notes-on-binary-classifer-evaluation">Some notes on binary classifer evaluation</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/binary-classifiers.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">title</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="chosen-metrics-accuracy-precision-recall-and-f1-score" class="level3">
+<h3 class="anchored" data-anchor-id="chosen-metrics-accuracy-precision-recall-and-f1-score">Chosen metrics: Accuracy, Precision, Recall, and F1 score</h3>
+<p><strong>Accuracy</strong> is often sought as a metric for binary classifier evaluation, but it is only meaningful in cases where the test set contains equal numbers of positive and negative cases. <strong>Precision</strong> and <strong>Recall</strong> still work well in cases where the test set is imbalanced. The <strong>F1 score</strong> gives a way of combining precision and recall into a single metric - taking the harmonic mean of the two.</p>
+<ul>
+<li>Accuracy = (TP + TN) / (TP + TN + FP + FN)</li>
+<li>Precision = TP / (TP + FP)</li>
+<li>Recall = TP / (TP + FN)</li>
+<li>F1 = 2 * (Precision * Recall) / (Precision + Recall)</li>
+</ul>
+<p><strong>Precision</strong> asks the question: “Out of all the positive predictions, how many were correct?”</p>
+<p><strong>Recall</strong> asks the question: “Out of all the actual positives, how many did we predict correctly?”</p>
+<p><strong>Accuracy</strong> is the proportion of true results (both true positives and true negatives) among the total number of examples examined.</p>
+</section>
+</section>
+<section id="performance-metrics-of-osfl-model-on-balanced-validation-set" class="level1">
+<h1>Performance metrics of OSFL model on balanced validation set</h1>
+<p><em>OSFL model Precision, Recall, Accuracy and F1 Score for OSFL model on balanced validation set with 400 samples per class. The second figure is the confusion matrix at a classification threshold of 0.5</em>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Video</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># figure size in inches optional</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> <span class="dv">11</span> ,<span class="dv">8</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># read images</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/osfl-pr-curves-balanced-validation-set.png'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>img_B <span class="op">=</span> mpimg.imread(<span class="st">'images/osfl-cm-balanced-validation-set.png'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># display images</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(img_A)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(img_B)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="performance-metrics-of-osfl-model-on-balanced-withheld-test-set" class="level1">
+<h1>Performance metrics of OSFL model on balanced withheld test set</h1>
+<p>To prevent overfitting to the validation set, a set of examples was set to one side at the beginning of the project and not looked at until this final evaluation stage. These examples were taken from different locations to those used in the training set to avoid contaminating the test data with examples the model had already seen during training. Because the human labelled data was known to contain mis-lablels, I checked each example in the test set and re-labelled any incorrect ones.</p>
+<p>To guard against possible bias introduced through my own verification of the labels, the model was also evaluated using a second test set which had only the original human labelling. Whilst this second test set contained errors, it did allow me to compare model performance against a benchmark model in a more objective way.</p>
+</section>
+<section id="withheld-test-set-results" class="level1">
+<h1>Withheld test set results:</h1>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read images</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/pr-curves-balanced-test-set.png'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>img_B <span class="op">=</span> mpimg.imread(<span class="st">'images/osfl-cm-balanced-test.png'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># display images</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(img_A)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(img_B)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>OSFL model Precision, Recall, F1 score, Accuracy on a balanced withheld test set with 800 samples per class, and from a mixture of sources. Second figure is the confusion matrix at a threshold of 0.5. Video shows how the confusion matrix changes as the threshold is adjusted.</em></p>
+</section>
+<section id="model-evaluation-against-unbalanced-validation-set" class="level1">
+<h1>Model evaluation against unbalanced validation set</h1>
+<p>Most of the samples in the absent class are unverified, meaning some of the absent labels will actually be present, but only a small number of them since the top-down-cleaning was done on the dataset. This plot shows how the precision recall curves are likely to change when the model is run on an unbalanced dataset where the target species vocalization accounts for 6% of the total audio.</p>
+<p>The main difference is that at <strong>inference time, the classification threshold should be set higher</strong> than it appeared when the model was evaluated against a balanced test set - at around 0.8.</p>
+<p>The accuracy curve in this plot is not meaningful because the classes are unbalanced.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read image</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/osfl-pr-curves-unbalanced-unverified-validation-set.png'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set image size</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">10</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_A)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="osfl-model-trained-entirely-on-focal-examples" class="level1">
+<h1>OSFL model trained entirely on focal examples</h1>
+<p>As an experiment, a model was trained on only focal examples extracted by a model. If a new model was trained only on these focal examples, then the new model had high precision but low recall. Here are the results of that test. Note that the recall curve looks lower than it actually is, since the y axis starts at 0.5.</p>
+<p>This test was done against a balanced validation set, so the accuracy metric is meaningful.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/osfl-pr-curves-focal-only.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">focal only</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="model-comparison-with-benchmark-model" class="level1">
+<h1>Model comparison with benchmark model</h1>
+<p>To test whether the model performed better than an existing model, I chose to evaluate against HawkEars, which is an excellent multi-species recognizer capable of detecting 328 bird species found in Canada. I chose this model because of its focus on Canada’s birds, which is broadly the same region as the OSFL model.</p>
+<p>Since HawkEars is a multi species model, it produces an output activation for each of the 328 species it is trained on. The loss function used to train HawkEars is Binary Cross Entropy Loss, meaning that each of the output activations is independently put through its own sigmoid function, and not scaled based on the sum of all the other output activations as would be the case if Cross Entropy Loss was used. Because of this feature of the output activations, I decided it was acceptable to evaluate the model by looking at the Olive Sided Flycatcher output activation alone, and to ignore the other species’ predictions.</p>
+<p>It should be remembered that this usage of the HawkEars model is different to the normal production usage - where the output would occur alongside 327 other species predictions.</p>
+<p>To collect the hawkears model predictions, the following process was used:</p>
+<ol type="1">
+<li>Export the examples in the test set as individual 3s audio clips</li>
+<li>Run the HawkEars model on each clip, with the threshold setting set to zero, so that the output activation for each species is given.</li>
+<li>Filter out any predictions for other species, and keep only the target species predictions.</li>
+<li>Combine the predictions into a pandas dataframe, and re-combine the predictions with the original test set labels.</li>
+<li>Evaluate the model using the same metrics as the OSFL model.</li>
+</ol>
+<section id="results-of-osfl-model-against-the-hawkears-osfl-output-node" class="level2">
+<h2 class="anchored" data-anchor-id="results-of-osfl-model-against-the-hawkears-osfl-output-node">Results of OSFL model against the Hawkears OSFL output node</h2>
+<p>At threshold which gave hawkears the highest F1 score measured against a balanced test set containting 1600 examples, the following metrics were obtained:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hawkears-.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">hawkears optimal threshold</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="withheld-test-set-results-1" class="level1">
+<h1>Withheld test set results</h1>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read images</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/hawkears-test-set-preds.png'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>img_B <span class="op">=</span> mpimg.imread(<span class="st">'images/pr-curves-balanced-test-set.png'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># display images</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(img_A)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(img_B)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="pr-curves-measured-against-an-uncleaned-balanced-test-set" class="level3">
+<h3 class="anchored" data-anchor-id="pr-curves-measured-against-an-uncleaned-balanced-test-set">PR Curves measured against an uncleaned balanced test set</h3>
+<p>This was done to guard against unintentional bias introduced during the cleaning process.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read images</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/hawkears-pr-curves-uncleaned-test-set.png'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>img_B <span class="op">=</span> mpimg.imread(<span class="st">'images/pr-curves-uncleaned-test-set.png'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># display images</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(img_A)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(img_B)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="confusion-matrices-for-the-models-each-at-their-optimal-threshold" class="level3">
+<h3 class="anchored" data-anchor-id="confusion-matrices-for-the-models-each-at-their-optimal-threshold">Confusion matrices for the models each at their optimal threshold</h3>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read images</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>img_A <span class="op">=</span> mpimg.imread(<span class="st">'images/hawkears-cm-optimal-threshold.png'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>img_B <span class="op">=</span> mpimg.imread(<span class="st">'images/cm-optimal-threshold-balanced-test-set.png'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># display images</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(img_A)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(img_B)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="C-Results_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="effect-of-changing-the-threshold-on-the-confusion-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-changing-the-threshold-on-the-confusion-matrix">Effect of changing the threshold on the confusion matrix</h2>
+<section id="osfl-cnn-recognizer" class="level3">
+<h3 class="anchored" data-anchor-id="osfl-cnn-recognizer">OSFL CNN Recognizer</h3>
+<p>https://drive.google.com/file/d/1XaIQEqc4p0zthzxvma_nO4tW2iKYt08m/view?usp=sharing</p>
+<iframe src="https://drive.google.com/file/d/1XaIQEqc4p0zthzxvma_nO4tW2iKYt08m/preview" width="640" height="480" allow="autoplay">
+</iframe>
+</section>
+<section id="hawkears-osfl-output-node" class="level3">
+<h3 class="anchored" data-anchor-id="hawkears-osfl-output-node">HawkEars OSFL output node</h3>
+<p>https://drive.google.com/file/d/1TsSgGDKBxeoTWhiRSQUj1R807Y3-V9zG/view?usp=sharing</p>
+<iframe src="https://drive.google.com/file/d/1TsSgGDKBxeoTWhiRSQUj1R807Y3-V9zG/preview" width="640" height="480" allow="autoplay">
+</iframe>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

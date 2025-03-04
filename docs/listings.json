@@ -3,6 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/embeddings/embeddings.html",
+      "/posts/osfl-project-description/C-Results.html",
+      "/posts/osfl-project-description/B-project-description.html",
       "/posts/kaggle-insurance-competition/insurance_competition.html",
       "/posts/BCE-model/BCEmodel.html",
       "/posts/RAG/RAG.html",

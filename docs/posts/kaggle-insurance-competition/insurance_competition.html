@@ -185,7 +185,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="regression-with-an-insurance-dataset" class="level1">
 <h1>Regression with an Insurance Dataset</h1>
-<p>https://www.kaggle.com/competitions/playground-series-s4e12/overview</p>
+<p>This notebook trains a random forest model to predict car insurance premium for a given customer.</p>
+<p>It is for a Kaggle competition - https://www.kaggle.com/competitions/playground-series-s4e12/overview</p>
+<p>The tabular dataset includes insurance customer data, along with the premium each of the customers pays.</p>
+<p>The model’s predictions were submitted to the competition and placed 818/2392 on the private leaderboard.</p>
+<p>In addition to entering the competition, I also explored techniques to see which features of the data are most important for making predictions, and how much these features contribute to the model’s predictions - over the entire dataset or for a specific customer. <em>This ability to look closely at the causes of predictions is one of the strengths of tree-based models like random forests</em>.</p>
+<p>Finally, a neural network was trained on the tabular dataset, and ensembled with the random forest model. This ensembled performed better than either the neural network or the random forest model alone.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="rf.png" class="img-fluid figure-img"></p>
